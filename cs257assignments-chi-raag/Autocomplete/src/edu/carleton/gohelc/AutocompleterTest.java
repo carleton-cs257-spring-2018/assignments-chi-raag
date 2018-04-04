@@ -1,5 +1,6 @@
 package edu.carleton.gohelc;
 
+import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -66,6 +67,12 @@ class AutocompleterTest {
         }
     }
 
+    void chiraagTriesSorting(String s) {
+        List<Sring> completions = completer.getCompletions(s);
+        boolean first = completions.
+        for ()
+    }
+
     void completeEmptyString() {
         List<String> completions = completer.getcompletions("");
         assertEquals(0, completions.size(), "Empty string generated one or more completions");
@@ -74,6 +81,39 @@ class AutocompleterTest {
     //TODO
     void noBreak() {
 
+    }
+
+    void chiraagTriesSorting(String s) {
+        List<String> completions = completer.getCompletions(s);
+        List<Integer> sort = new ArrayList<Integer>();
+
+        for (int i = 0; i < completions.size(); i++) {
+
+            boolean first = completions.get(i).indexOf(",") == completions.indexOf(s) - 1;
+            boolean last = completions.get(i).indexOf(s) == 1;
+
+            if (first) {
+                sort.add(1);
+            } else if (last) {
+                sort.add(2);
+            }
+        }
+
+        int j = 1;
+        int check = sort.get(0);
+        int k = sort.get(j);
+        while (j < sort.size()) {
+            if (k < check) {
+                fail("Search results out of order");
+            }
+            else {
+                check = sort.get(j);
+                j++;
+                k = sort.get(j);
+
+            }
+
+        }
     }
 
     void WhereDoesItMatch_ForBeginningOfLastNameReturnsBeginningOfLastName{
