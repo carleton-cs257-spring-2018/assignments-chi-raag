@@ -1,6 +1,6 @@
 /**
  * Autocompleter.java
- * Jeff Ondich, 20 March 2018
+ * Liz Nichols and Chiraag Gohel, 05 April 2018
  *
  * This class exposes a very simple interface for generating auto-completions of search strings.
  * The purpose of this class is to give the students in CS257 an opportunity to practice creating
@@ -100,6 +100,9 @@ public class Autocompleter {
     }
 
 
+    /**
+     * A method called by main to print out the actors in a list
+     */
     public void printActors() {
         for (int i = 0; i < actors.size(); i++) {
             System.out.println(actors.get(i).getName());
