@@ -1,10 +1,13 @@
 package edu.carleton.gohelc;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class Main {
 
-    public static void main(String[] args) {
-
-        System.out.println("Hello World!");
-        System.out.println("liz added this part");
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+       Autocompleter autocompleter = new Autocompleter(args[0]);
+       autocompleter.getCompletions(args[1]);
+       autocompleter.printActors();
     }
 }
