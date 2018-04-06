@@ -9,5 +9,6 @@ public class Main {
        Autocompleter autocompleter = new Autocompleter(args[0]);
        autocompleter.getCompletions(args[1]);
        autocompleter.printActors();
+       System.out.print("hayezhelen".compareTo("hunthelen"));
     }
 }

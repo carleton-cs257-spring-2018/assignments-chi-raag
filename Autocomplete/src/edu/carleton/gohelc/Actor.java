@@ -65,10 +65,9 @@ public class Actor implements Comparable<Actor>{
         if (matchType == otherActor.getMatchType())
         {
 
-
             if (matchIndex == otherActor.getMatchIndex())
             {
-                if (this.getCompareString() == otherActor.getCompareString())
+                if (this.getCompareString().equals(otherActor.getCompareString()))
                 {
                     return 0;
                 }
