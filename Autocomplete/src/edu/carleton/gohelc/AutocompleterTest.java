@@ -186,15 +186,15 @@ class AutocompleterTest {
     */
 
     //    Checks if getCompletions matches across apostrophes
-//    @org.junit.jupiter.api.Test
-//    void takesCareofApostrophes(){
-//        String searchString = "one";
-//        String[] expected = {"O'Neal, Tatum","Jones, Jennifer","Jones, Laura"};
-//        List<String> completions = completer.getCompletions(searchString);
-//        String[] completionsArray = completions.toArray(new String[0]);
-//
-//        assertArrayEquals(expected, completionsArray, "Didn't take care of apostrophes!");
-//    }
+   @org.junit.jupiter.api.Test
+   void takesCareofApostrophes(){
+       String searchString = "one";
+        String[] expected = {"O'Neal, Tatum","Jones, Jennifer","Jones, Laura"};
+        List<String> completions = completer.getCompletions(searchString);
+      String[] completionsArray = completions.toArray(new String[0]);
+
+       assertArrayEquals(expected, completionsArray, "Didn't take care of apostrophes!");
+    }
 
     //    Checks if getCompletions matches across hyphens
     @org.junit.jupiter.api.Test

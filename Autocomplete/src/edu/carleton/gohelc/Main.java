@@ -8,7 +8,6 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException, IOException {
        Autocompleter autocompleter = new Autocompleter(args[0]);
        autocompleter.getCompletions(args[1]);
-       autocompleter.printActors();
-       System.out.print("hayezhelen".compareTo("hunthelen"));
+       System.out.print();
     }
 }
