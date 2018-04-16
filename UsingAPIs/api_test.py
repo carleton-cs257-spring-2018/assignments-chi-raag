@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 '''
     api_test.py
-    Chiraag Gohel and Sharan Ganjam Sehachallam, 15 April 2018
+    Chiraag Ashok Gohel and Sharan Ganjam Sehachallam, 15 April 2018
 
     CS 257 Software Design - Assignment 2 - Using APIs
     Using the Intellexer API to summarize an article, or present a list of named
