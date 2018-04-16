@@ -51,6 +51,10 @@ public class Autocompleter {
             List<String> hello = new ArrayList<String>();
             return hello;
         }
+        if (search.equals(null)) {
+            List<String> hello = new ArrayList<String>();
+            return hello;
+        }
         String realSearch = search.replace(" ", "").toLowerCase();
         for (int i = 0; i < nameList.size(); i++) {
             String name = nameList.get(i);

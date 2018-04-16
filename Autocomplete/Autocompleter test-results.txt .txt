@@ -1,0 +1,11 @@
+Autocompleter test results, 6 April 2018
+
+Chiraag Gohel, Liz Nichols 
+other team: Grant Lee, Ari Conati
+
+Their code passed their own tests.
+Our code passed our own tests.
+
+We had to add a catch for null input. We still have a bug that is comparing Mein, Hannah and Simein, Eileen incorrectly.
+
+They failed a test designed to handle searches with periods.
