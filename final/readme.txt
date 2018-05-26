@@ -10,3 +10,6 @@ The MVC model is appropriate for this project as we have a clearly defined model
 pendulum) that is visualized virtually. The user can manipulate parameters of the model with
 some controls, which in turn modifies the visual. This allows for a "core" model,
 that is flexible to user-inputted adaptations and tweaks.
+
+The core classes in our model are Main.java, Model.java, View.java and Controller.java
+Note that View.java creates either of two different visuals depending on user input.
