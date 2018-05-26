@@ -2,7 +2,13 @@ package sample;
 
 public class Model {
 
-    public void startNewSimulation() {
+    private int[] formulas;
+
+    public Model() {
+
+    }
+
+    public void startNewSimulation(int nodes) {
 
     }
 
@@ -10,5 +16,15 @@ public class Model {
 
     }
 
-    
+    public void createGraph(int nodes) {
+
+    }
+
+    public void resetGraph() {
+
+    }
+
+
+
+
 }
