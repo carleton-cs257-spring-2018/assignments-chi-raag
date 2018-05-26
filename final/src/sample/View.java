@@ -9,6 +9,7 @@ public class View extends Group {
 
     //The number of nodes that defines the size of the pendulum system
     private int N;
+    private boolean viewtype;
 
     /* A set constructor for the size of the pendulum system.
         @param nodes: The number of nodes in the pendulum
@@ -18,7 +19,7 @@ public class View extends Group {
     /** @constructor */
     public View(int N) {
         this.N = N;
-        initialize(, boolean viewtype);
+        initialize(boolean viewtype);
     }
 
     /* A get method for the size of the pendulum system.
