@@ -7,24 +7,26 @@ import javafx.scene.image.ImageView;
 
 public class View extends Group {
 
+    private int N;
+
+    /* A set constructor for the size of the pendulum system.
+     */
+    public View(int N) {
+        this.N = N;
+        this.initializeView();
+    }
+
     /* A get method for the size of the pendulum system.
     */
     public int getN() {
         return this.N;
     }
 
-    /* A set method for the size of the pendulum system.
-    */
-    public void setN(int N) {
-        this.N = N;
-        this.initializeView();
-    }
-
     /* Initializes the graphic of the pendulum system.
       * Graphic starts from the horizontal position.
       * Includes a timer to show the evolution of the system quantitatively.
     */
-    public initializeView() {
+    public void initializeView() {
 
     }
 
@@ -32,7 +34,7 @@ public class View extends Group {
       * Graphic starts from the horizontal position.
       * Includes a timer to show the evolution of the system quantitatively.
     */
-    public initializeGraph() {
+    public void initializeGraph() {
 
     }
 
