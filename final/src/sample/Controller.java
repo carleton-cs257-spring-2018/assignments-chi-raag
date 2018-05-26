@@ -12,6 +12,7 @@ public class Controller implements EventHandler<KeyEvent> {
     @FXML private View View;
     private Model Model;
 
+    /** @constructor */
     public Controller() {
     }
 
@@ -25,21 +26,28 @@ public class Controller implements EventHandler<KeyEvent> {
 
 
     /*
-    Updates the pendulum model with the user demands.
-     Allows the user to see the time of simulation.
+    Updates the pendulum model with the user demands - either works with the simulation visual or the KE graph.
+     Allows the user to see the time at end of simulation.
      */
     private void update() {
-        this.View.update(this.Model);
-        this.timeLabel.setText(String.format("Time: ", this.Model.getScore()));
+        if(this.Model.getviewtype())
+            this.View.updateView(this.Model);
+        else
+            this.View.updateGraph(this.Model);
+        //Display total time of simulation
+        this.timeLabel.setText(String.format("Time: ", this.Model.getTime()));
     }
 
     /*
-     Allows the user to stop the current simulation and set a new pendulum size.
-     User hits a specific key to stop current simulation, then inputs new size.
+     Allows the user to stop the current visual.
+     Switch view between simulation and KE graph.
+     Or stop the simulation and set a new pendulum size.
+     User hits a specific key to stop current simulation, then inputs new size or demand for new view.
      Model updated appropriately.
      */
     @Override
     public void handle(KeyEvent keyEvent) {
-
+    //Uses Model.setviewtype() to manipulate viewtype depending on user input
     }
+
 }
