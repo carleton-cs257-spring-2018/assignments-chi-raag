@@ -19,7 +19,7 @@ public class View extends Group {
     /** @constructor */
     public View(int N) {
         this.N = N;
-        initialize(boolean viewtype);
+        //initialize(boolean viewtype);
     }
 
     /* A get method for the size of the pendulum system.

@@ -24,6 +24,7 @@ public class Model {
      */
     public boolean setviewtype(boolean viewtype) {
         this.viewtype = viewtype;
+        return viewtype;
     }
     /*  Initializes a simulation with appropriate math needed
      *   to define and visualize an n-tuple pendulum
