@@ -116,7 +116,7 @@ public class Model {
     }
 
     public void updateTheta(double theta) {
-        
+
     }
 
 
