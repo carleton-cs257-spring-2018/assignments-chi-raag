@@ -1,4 +1,4 @@
-package sample;
+package gs_gohel_final;
 
 public class Model {
 

@@ -4,12 +4,11 @@ CS 257, 18/SP
 Adapted from Jeff Ondich's Daleks project
 25 May 2018
  */
-package sample;
+package gs_gohel_final;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
