@@ -1,10 +1,20 @@
 package gs_gohel_final;
 
+import java.awt.*;
+
 public class Model {
 
-    private int[] formulas;
     private boolean viewtype;
     private int totaltime;
+    private int pendulumLength;
+    private int nodeRadius;
+    private Color[] nodeColors;
+    private Color backgroundColor;
+    private double xCordinate;
+    private double yCoordinate;
+    private double damping;
+    private double theta;
+    private double gravityAcceleration = -9.81;
 
     /** @constructor */
     public Model() {
@@ -12,7 +22,7 @@ public class Model {
         startNewSimulation();
     }
 
-    /*  Get method for viewtyp
+    /*  Get method for viewtype
         @returns viewtype: Boolean that determines type of view
      */
     public boolean getviewtype() {
@@ -36,7 +46,7 @@ public class Model {
     /*  Initializes a graphical with appropriate math needed
      *   to visualize evolution of kinetic energy of an n-tuple pendulum
      */
-    public void createGraph() {
+    public void createGraph(int nodes) {
 
     }
 
@@ -69,6 +79,46 @@ public class Model {
 
     }
 
+    public void setPendulumLength(int pendulumLength) {
+        this.pendulumLength = pendulumLength;
+    }
+
+    public int getPendulumLength() {
+        return this.pendulumLength;
+    }
+
+    public void setNodeRadius(int nodeRadius) {
+        this.nodeRadius = nodeRadius;
+    }
+
+    public int getNodeRadius() {
+        return this.nodeRadius;
+    }
+
+    public void setPendulumColor(Color[] color) {
+        this.nodeColors = color;
+    }
+
+    public Color[] getPendulumColor() {
+        return this.nodeColors;
+    }
+
+    public void setBackgroundColor(Color color) {
+        this.backgroundColor = color;
+    }
+
+    public Color getBackgroundColor(Color color) {
+        return backgroundColor;
+    }
+
+    public void setDamping(int damping) {
+        this.damping = damping;
+    }
+
+    public void updateTheta(double theta) {
+        
+    }
+
 
     /* Get method for the time that the simulation has run for.
         @return totaltime: totaltime of the simulation
@@ -76,6 +126,8 @@ public class Model {
     public int getTime() {
         return totaltime;
     }
+
+
 
 
 }

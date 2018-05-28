@@ -2,11 +2,18 @@ package gs_gohel_final;
 
 import javafx.scene.Group;
 
+import java.awt.*;
+
 public class View extends Group {
 
     //The number of nodes that defines the size of the pendulum system
     private int N;
     private boolean viewtype;
+    private int totaltime;
+    private int pendulumLength;
+    private int nodeRadius;
+    private Color[] nodeColors;
+    private Color backgroundColor;
 
     /* A set constructor for the size of the pendulum system.
         @param nodes: The number of nodes in the pendulum
