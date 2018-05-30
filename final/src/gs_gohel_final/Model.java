@@ -15,6 +15,8 @@ public class Model {
     private double damping;
     private double theta;
     private double gravityAcceleration = -9.81;
+    private int m1,m2,m3;
+    private int l1,l2,l3;
 
     /** @constructor */
     public Model() {
@@ -54,6 +56,43 @@ public class Model {
      *   @param nodes: number of nodes in pendulum
      */
     public void setFormulasSim(int nodes) {
+        double angaccel, angvelocity = 0, dt = 0.1, angle;
+        if (nodes == 1) {
+            while (/* stepwise integration constraint */) {
+                angaccel = -9.81 / this.length * sin(angle);
+                angvelocity += angaccel * dt;
+                angle += angvelocity * dt;
+            }
+            m2=m3=l2=l3=0;
+            return //values
+        }
+        else if(nodes == 2) {
+            double angaccel2, angvelocity2 = 0, angle2;
+            while (/* stepwise integration constraint */) {
+                angaccel = -9.81 / this.length * sin(angle);
+                angvelocity += angaccel * dt;
+                angle += angvelocity * dt;
+
+                angaccel2 = -9.81 / this.length * sin(angle);
+                angvelocity2 += angaccel * dt;
+                angle2 += angvelocity * dt;
+            }
+            m3=l3=0;
+            return //values
+        }
+        else if(nodes == 3) {
+            double angaccel2, angvelocity2 = 0, angle2;
+            double angaccel3, angvelocity3 = 0, angle3;
+            while (/* stepwise integration constraint */) {
+                angaccel = -9.81 / this.length * sin(angle);
+                angvelocity += angaccel * dt;
+                angle += angvelocity * dt;
+
+                angaccel2 = -9.81 / this.length * sin(angle);
+                angvelocity2 += angaccel * dt;
+                angle2 += angvelocity * dt;
+            }
+        }
 
     }
 
