@@ -16,6 +16,7 @@ public class Model {
     private double damping;
     private double theta;
     private double gravityAcceleration = -9.81;
+    public Instant time;
 
     private int m1,m2,m3;
     private int l1,l2,l3;
@@ -63,7 +64,7 @@ public class Model {
         double angaccel, angvelocity = 0, dt = 0.1, angle;
         if (nodes == 1) {
             while (/* stepwise integration constraint */) {
-                angaccel = -9.81 / this.length * sin(angle);
+                angaccel = -9.81 / this.length * Math.sin(angle);
                 angvelocity += angaccel * dt;
                 angle += angvelocity * dt;
             }
@@ -73,11 +74,11 @@ public class Model {
         else if(nodes == 2) {
             double angaccel2, angvelocity2 = 0, angle2;
             while (/* stepwise integration constraint */) {
-                angaccel = -9.81 / this.length * sin(angle);
+                angaccel = gravityAcceleration / this.pendulumLength * Math.sin(angle);
                 angvelocity += angaccel * dt;
                 angle += angvelocity * dt;
 
-                angaccel2 = -9.81 / this.length * sin(angle);
+                angaccel2 = gravityAcceleration / this.pendulumLength * Math.sin(angle);
                 angvelocity2 += angaccel * dt;
                 angle2 += angvelocity * dt;
             }
@@ -88,11 +89,11 @@ public class Model {
             double angaccel2, angvelocity2 = 0, angle2;
             double angaccel3, angvelocity3 = 0, angle3;
             while (/* stepwise integration constraint */) {
-                angaccel = -9.81 / this.length * sin(angle);
+                angaccel = gravityAcceleration / this.pendulumLength * Math.sin(angle);
                 angvelocity += angaccel * dt;
                 angle += angvelocity * dt;
 
-                angaccel2 = -9.81 / this.length * sin(angle);
+                angaccel2 = gravityAcceleration / this.pendulumLength * Math.sin(angle);
                 angvelocity2 += angaccel * dt;
                 angle2 += angvelocity * dt;
             }
