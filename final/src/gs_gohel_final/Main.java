@@ -15,7 +15,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("npendulum.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("gs_gohel_final.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("The Pendulum");
 
