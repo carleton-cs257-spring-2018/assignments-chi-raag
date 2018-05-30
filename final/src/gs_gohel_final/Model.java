@@ -1,6 +1,7 @@
 package gs_gohel_final;
 
 import java.awt.*;
+import java.time.Instant;
 
 public class Model {
 
@@ -15,6 +16,7 @@ public class Model {
     private double damping;
     private double theta;
     private double gravityAcceleration = -9.81;
+    private Instant time;
 
     /** @constructor */
     public Model() {
@@ -119,15 +121,7 @@ public class Model {
 
     }
 
-
-    /* Get method for the time that the simulation has run for.
-        @return totaltime: totaltime of the simulation
-     */
-    public int getTime() {
-        return totaltime;
+    public Instant getTime() {
+        return this.time;
     }
-
-
-
-
 }
