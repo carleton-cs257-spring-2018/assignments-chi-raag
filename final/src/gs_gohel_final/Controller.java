@@ -47,6 +47,8 @@ public class Controller implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent keyEvent) {
     //Uses Model.setviewtype() to manipulate viewtype depending on user input
+
+        boolean pressRecognized = true;
     }
 
 }
