@@ -1,3 +1,10 @@
+/*
+* nPendulum JAVAFX project
+* Authors: Chiraag Gohel and Sharan Ganjam Seshachallam
+* CS 257, Spring 2018
+
+ */
+
 package gs_gohel_final;
 
 import java.awt.*;
@@ -8,30 +15,41 @@ public class Model {
 
     private boolean viewtype;
     private int totaltime;
-    private int pendulumLength;
+    //private int pendulumLength;
     private int nodeRadius;
     private Color[] nodeColors;
     private Color backgroundColor;
-    private double xCordinate;
-    private double yCoordinate;
+    private double xCoordinate, xCoordinate2;
+    private double yCoordinate, yCoordinate2;
     private double damping;
-    private double theta;
+    private double theta, theta2;
     private double gravityAcceleration;
     public Instant time;
 
     private int m1,m2,m3;
     private int l1,l2,l3;
 
+    private double angVelocity, angVelocity2;
+    private double angaccel, angaccel2;
 
+    private double KE_sys;
+
+/* Notes for the system:
+* Origin is at the pivot point - so at t=0, x is l1 and y is 0.
+* dt will be 0.1 to test
+* m1,m2,l1,l2 are parameters that Controller.java will have to provide. All other variables are calculated here.
+ */
 
     /** @constructor */
     public Model() {
+        //default values
         viewtype=true;
-        pendulumLength = 5;
+        l1 = 5;
         nodeRadius = 1;
         backgroundColor = Color.CYAN;
         theta = 90;
         gravityAcceleration = -9.81;
+        dt=0.1;
     }
 
     /*  Get method for viewtype
@@ -50,89 +68,59 @@ public class Model {
     }
     /*  Initializes a simulation with appropriate math needed
      *   to define and visualize an n-tuple pendulum
+     *   @param nodes: number of nodes in pendulum
      */
-    public void startNewSimulation() {
+    public void startNewSimulation(int nodes) {
+        this.theta=90;
+        this.time=0;
+        this.angaccel=-gravityAcceleration/this.l1;
+        this.angVelocity=0;
+        this.xCoordinate=l1;
+        this.yCoordinate=0;
+        this.KE_sys=0;
 
+        if (nodes==2) {
+            this.angaccel2 = -gravityAcceleration / (this.l1 + this.l2);
+            this.angVelocity2 = 0;
+            this.xCoordinate=l1+l2;
+            this.yCoordinate=0;
+        }
     }
 
     /*  Initializes a graphical with appropriate math needed
      *   to visualize evolution of kinetic energy of an n-tuple pendulum
      */
     public void createGraph(int nodes) {
-
+        this.time=0;
+        this.KE_sys=0;
     }
 
-    /*  Defines the set of differential equations to be used based in the number of nodes in pendulum
+    /*  Defines the set of values that define the system at each time step based on the number of nodes in pendulum
      *   @param nodes: number of nodes in pendulum
      */
-//    public void setFormulasSim(int nodes) {
-//        double angaccel, angvelocity = 0, dt = 0.1, angle;
-//        if (nodes == 1) {
-//            while (/* stepwise integration constraint */) {
-//                angaccel = -9.81 / this.pendulumLength * Math.sin(angle);
-//                angvelocity += angaccel * dt;
-//                angle += angvelocity * dt;
-//            }
-//            m2=m3=l2=l3=0;
-//        }
-//        else if(nodes == 2) {
-//            double angaccel2, angvelocity2 = 0, angle2;
-//            while (/* stepwise integration constraint */) {
-//                angaccel = gravityAcceleration / this.pendulumLength * Math.sin(angle);
-//                angvelocity += angaccel * dt;
-//                angle += angvelocity * dt;
-//
-//                angaccel2 = gravityAcceleration / this.pendulumLength * Math.sin(angle);
-//                angvelocity2 += angaccel * dt;
-//                angle2 += angvelocity * dt;
-//            }
-//            m3=l3=0;
-//        }
-//        else if(nodes == 3) {
-//            double angaccel2, angvelocity2 = 0, angle2;
-//            double angaccel3, angvelocity3 = 0, angle3;
-//            while (/* stepwise integration constraint */) {
-//                angaccel = gravityAcceleration / this.pendulumLength * Math.sin(angle);
-//                angvelocity += angaccel * dt;
-//                angle += angvelocity * dt;
-//
-//                angaccel2 = gravityAcceleration / this.pendulumLength * Math.sin(angle);
-//                angvelocity2 += angaccel * dt;
-//                angle2 += angvelocity * dt;
-//            }
-//        }
-//
-//    }
 
 //    public void setFormulasSim(int nodes) {
-//        double angaccel, angvelocity = 0, dt = 0.1, angle;
 //        if (nodes == 1) {
-//            while (/* stepwise integration constraint */) {
-//                angaccel = -9.81 / this.pendulumLength * Math.sin(angle);
-//                angvelocity += angaccel * dt;
-//                angle += angvelocity * dt;
-//            }
+//                angaccel = -9.81 / this.l1 * sin(theta);
+//                angVelocity += angaccel * dt;
+//                theta += angVelocity * dt;
 //            m2=m3=l2=l3=0;
-//            return //values
 //        }
 //        else if(nodes == 2) {
-//            double angaccel2, angvelocity2 = 0, angle2;
-//            while (/* stepwise integration constraint */) {
-//                angaccel = (-gravityAcceleration*(2*m1+m2)*Math.sin(angle)-m2*gravityAcceleration*Math.sin(angle-2*angle2)-2*Math.sin(angle-angle2)*m2*(l2*angvelocity2*2+l1*Math.cos(angle-angle2)*angvelocity*2))/(l1*(2*m1+m2-m2*Math.cos(2*angle-2*angle2)));
-//                angvelocity += angaccel * dt;
-//                angle += angvelocity * dt;
+//                angaccel = (-gravityAcceleration*(2*m1+m2)*sin(theta)-m2*gravityAcceleration*sin(theta-2*theta2)-2*sin(theta-theta2)*m2*(l2*angVelocity2*2+l1*cos(theta-theta2)*angVelocity*2))/(l1*(2*m1+m2-m2*cos(2*theta-2*theta2)));
+//                angVelocity += angaccel * dt;
+//                theta += angVelocity * dt;
 //
-//                angaccel2 = (2*Math.sin(angle-angle2)*((m1+m2)*l1*angvelocity*2+gravityAcceleration*(m1+m2)*Math.cos(angle)+l2*m2*Math.cos(angle-angle2)*angvelocity2*2))/(l2*(2*m1+m2-m2*Math.cos(2*angle-2*angle2)));
-//                angvelocity2 += angaccel * dt;
-//                angle2 += angvelocity * dt;
-//            }
+//                angaccel2 = (2*sin(theta-theta2)*((m1+m2)*l1*angVelocity*2+gravityAcceleration*(m1+m2)*cos(theta)+l2*m2*cos(theta-theta2)*angVelocity2*2))/(l2*(2*m1+m2-m2*cos(2*theta-2*theta2)));
+//                angVelocity2 += angaccel2 * dt;
+//                theta2 += angVelocity2 * dt;
 //            m3=l3=0;
-//            return //values
 //        }
+
+        /******************* INCOMPLETE - FILLER CODE *******************/
 //        else if(nodes == 3) {
 //            double angaccel2, angvelocity2 = 0, angle2;
 //            double angaccel3, angvelocity3 = 0, angle3;
-//            while (/* stepwise integration constraint */) {
 //                angaccel = gravityAcceleration / this.pendulumLength * Math.sin(angle);
 //                angvelocity += angaccel * dt;
 //                angle += angvelocity * dt;
@@ -140,8 +128,8 @@ public class Model {
 //                angaccel2 = gravityAcceleration / this.pendulumLength * Math.sin(angle);
 //                angvelocity2 += angaccel * dt;
 //                angle2 += angvelocity * dt;
-//            }
 //        }
+//        this.time += dt;
 //
 //    }
 
@@ -149,7 +137,18 @@ public class Model {
      *   @param nodes: number of nodes in pendulum
      */
     public void setFormulasGraph(int nodes) {
-
+        this.setFormulasSim(nodes);
+        double xVelocity= this.l1*cos(this.theta)*this.angVelocity;
+        double yVelocity= -this.l1*sin(this.theta)*this.angVelocity;
+        if (nodes == 1) {
+            this.KE_sys=0.5*m1*(xVelocity^2+yVelocity^2);
+        }
+        else if (nodes == 2) {
+            double x2Velocity= this.l1*cos(this.theta)*this.angVelocity + this.l2*cos(this.theta2)*this.angVelocity2;
+            double y2Velocity= -this.l1*sin(this.theta)*this.angVelocity - this.l2*sin(this.theta2)*this.angVelocity2;
+            this.KE_sys=0.5*m1*(xVelocity^2+yVelocity^2)+0.5*m2*(x2Velocity^2+y2Velocity^2)
+        }
+        this.time += this.dt;
     }
 
     /*  Modifies current view state as to stop
@@ -203,6 +202,7 @@ public class Model {
         this.damping = damping;
     }
 
+    //What does this method do? setFormulas is the method to update values
     public void updateTheta(double theta) {
 
     }
