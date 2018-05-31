@@ -163,6 +163,10 @@ public class Model {
 
     }
 
+    public double getTheta() {
+        return this.theta;
+    }
+
     public Instant getTime() {
         return this.time;
     }
