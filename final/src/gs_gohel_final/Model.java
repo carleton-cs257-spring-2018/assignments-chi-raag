@@ -2,6 +2,7 @@ package gs_gohel_final;
 
 import java.awt.*;
 import java.time.Instant;
+import java.lang.Math;
 
 public class Model {
 
@@ -74,11 +75,11 @@ public class Model {
         else if(nodes == 2) {
             double angaccel2, angvelocity2 = 0, angle2;
             while (/* stepwise integration constraint */) {
-                angaccel = gravityAcceleration / this.pendulumLength * Math.sin(angle);
+                angaccel = (-gravityAcceleration*(2*m1+m2)*sin(angle)-m2*gravityAcceleration*sin(angle-2*angle2)-2*sin(angle-angle2)*m2*(l2*angvelocity2**2+l1*cos(angle-angle2)*angvelocity**2))/(l1*(2*m1+m2-m2*cos(2*angle-2*angle2)))
                 angvelocity += angaccel * dt;
                 angle += angvelocity * dt;
 
-                angaccel2 = gravityAcceleration / this.pendulumLength * Math.sin(angle);
+                angaccel2 = (2*sin(angle-angle2)*((m1+m2)*l1*angvelocity**2+gravityAcceleration*(m1+m2)*cos(angle)+l2*m2*cos(angle-angle2)*angvelocity2**2))/(l2*(2*m1+m2-m2*cos(2*angle-2*angle2)))
                 angvelocity2 += angaccel * dt;
                 angle2 += angvelocity * dt;
             }
