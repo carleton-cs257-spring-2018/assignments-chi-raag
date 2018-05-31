@@ -4,6 +4,8 @@ import javafx.scene.Group;
 
 import java.awt.*;
 import javax.swing.JApplet;
+import java.awt.Graphics;
+import java.awt.Component;
 
 public class View extends Group {
 
@@ -16,6 +18,7 @@ public class View extends Group {
     private Color[] nodeColors;
     private Color backgroundColor;
     private double theta;
+    private Graphics g;
 
     /* A set constructor for the size of the pendulum system.
         @param nodes: The number of nodes in the pendulum
@@ -47,7 +50,7 @@ public class View extends Group {
       * Graphic starts from the horizontal position.
       * Default view of the system
     */
-    public void paint(Graphics g) {
+    public void paint() {
         g.setColor(backgroundColor);
         g.fillRect(0,0, JApplet.WIDTH,  JApplet.HEIGHT );
         g.setColor(Color.blue);
@@ -59,13 +62,21 @@ public class View extends Group {
         g.fillOval(ballX - 7, ballY - 7, 14, 14);
     }
 
+
+
     public void updateValues(Model model) {
         viewtype = model.getviewtype();
         pendulumLength = model.getPendulumLength();
         nodeRadius = model.getNodeRadius();
         theta = model.getTheta();
-
+        backgroundColor = model.getBackgroundColor();
     }
+
+    public void update(Model model) {
+        updateValues(model);
+        paint();
+    }
+
     public void initializeView() {
 
 

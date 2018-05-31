@@ -60,46 +60,44 @@ public class Model {
     /*  Defines the set of differential equations to be used based in the number of nodes in pendulum
      *   @param nodes: number of nodes in pendulum
      */
-    public void setFormulasSim(int nodes) {
-        double angaccel, angvelocity = 0, dt = 0.1, angle;
-        if (nodes == 1) {
-            while (/* stepwise integration constraint */) {
-                angaccel = -9.81 / this.length * Math.sin(angle);
-                angvelocity += angaccel * dt;
-                angle += angvelocity * dt;
-            }
-            m2=m3=l2=l3=0;
-            return //values
-        }
-        else if(nodes == 2) {
-            double angaccel2, angvelocity2 = 0, angle2;
-            while (/* stepwise integration constraint */) {
-                angaccel = gravityAcceleration / this.pendulumLength * Math.sin(angle);
-                angvelocity += angaccel * dt;
-                angle += angvelocity * dt;
-
-                angaccel2 = gravityAcceleration / this.pendulumLength * Math.sin(angle);
-                angvelocity2 += angaccel * dt;
-                angle2 += angvelocity * dt;
-            }
-            m3=l3=0;
-            return //values
-        }
-        else if(nodes == 3) {
-            double angaccel2, angvelocity2 = 0, angle2;
-            double angaccel3, angvelocity3 = 0, angle3;
-            while (/* stepwise integration constraint */) {
-                angaccel = gravityAcceleration / this.pendulumLength * Math.sin(angle);
-                angvelocity += angaccel * dt;
-                angle += angvelocity * dt;
-
-                angaccel2 = gravityAcceleration / this.pendulumLength * Math.sin(angle);
-                angvelocity2 += angaccel * dt;
-                angle2 += angvelocity * dt;
-            }
-        }
-
-    }
+//    public void setFormulasSim(int nodes) {
+//        double angaccel, angvelocity = 0, dt = 0.1, angle;
+//        if (nodes == 1) {
+//            while (/* stepwise integration constraint */) {
+//                angaccel = -9.81 / this.pendulumLength * Math.sin(angle);
+//                angvelocity += angaccel * dt;
+//                angle += angvelocity * dt;
+//            }
+//            m2=m3=l2=l3=0;
+//        }
+//        else if(nodes == 2) {
+//            double angaccel2, angvelocity2 = 0, angle2;
+//            while (/* stepwise integration constraint */) {
+//                angaccel = gravityAcceleration / this.pendulumLength * Math.sin(angle);
+//                angvelocity += angaccel * dt;
+//                angle += angvelocity * dt;
+//
+//                angaccel2 = gravityAcceleration / this.pendulumLength * Math.sin(angle);
+//                angvelocity2 += angaccel * dt;
+//                angle2 += angvelocity * dt;
+//            }
+//            m3=l3=0;
+//        }
+//        else if(nodes == 3) {
+//            double angaccel2, angvelocity2 = 0, angle2;
+//            double angaccel3, angvelocity3 = 0, angle3;
+//            while (/* stepwise integration constraint */) {
+//                angaccel = gravityAcceleration / this.pendulumLength * Math.sin(angle);
+//                angvelocity += angaccel * dt;
+//                angle += angvelocity * dt;
+//
+//                angaccel2 = gravityAcceleration / this.pendulumLength * Math.sin(angle);
+//                angvelocity2 += angaccel * dt;
+//                angle2 += angvelocity * dt;
+//            }
+//        }
+//
+//    }
 
     /*  Defines the KE equations to be used based in the number of nodes in pendulum
      *   @param nodes: number of nodes in pendulum
@@ -151,7 +149,7 @@ public class Model {
         this.backgroundColor = color;
     }
 
-    public Color getBackgroundColor(Color color) {
+    public Color getBackgroundColor() {
         return backgroundColor;
     }
 
