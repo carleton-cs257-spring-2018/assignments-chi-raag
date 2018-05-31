@@ -2,6 +2,7 @@ package gs_gohel_final;
 
 import java.awt.*;
 import java.time.Instant;
+import java.lang.Math;
 
 public class Model {
 
@@ -82,6 +83,47 @@ public class Model {
 //                angle2 += angvelocity * dt;
 //            }
 //            m3=l3=0;
+//        }
+//        else if(nodes == 3) {
+//            double angaccel2, angvelocity2 = 0, angle2;
+//            double angaccel3, angvelocity3 = 0, angle3;
+//            while (/* stepwise integration constraint */) {
+//                angaccel = gravityAcceleration / this.pendulumLength * Math.sin(angle);
+//                angvelocity += angaccel * dt;
+//                angle += angvelocity * dt;
+//
+//                angaccel2 = gravityAcceleration / this.pendulumLength * Math.sin(angle);
+//                angvelocity2 += angaccel * dt;
+//                angle2 += angvelocity * dt;
+//            }
+//        }
+//
+//    }
+
+//    public void setFormulasSim(int nodes) {
+//        double angaccel, angvelocity = 0, dt = 0.1, angle;
+//        if (nodes == 1) {
+//            while (/* stepwise integration constraint */) {
+//                angaccel = -9.81 / this.pendulumLength * Math.sin(angle);
+//                angvelocity += angaccel * dt;
+//                angle += angvelocity * dt;
+//            }
+//            m2=m3=l2=l3=0;
+//            return //values
+//        }
+//        else if(nodes == 2) {
+//            double angaccel2, angvelocity2 = 0, angle2;
+//            while (/* stepwise integration constraint */) {
+//                angaccel = (-gravityAcceleration*(2*m1+m2)*Math.sin(angle)-m2*gravityAcceleration*Math.sin(angle-2*angle2)-2*Math.sin(angle-angle2)*m2*(l2*angvelocity2*2+l1*Math.cos(angle-angle2)*angvelocity*2))/(l1*(2*m1+m2-m2*Math.cos(2*angle-2*angle2)));
+//                angvelocity += angaccel * dt;
+//                angle += angvelocity * dt;
+//
+//                angaccel2 = (2*Math.sin(angle-angle2)*((m1+m2)*l1*angvelocity*2+gravityAcceleration*(m1+m2)*Math.cos(angle)+l2*m2*Math.cos(angle-angle2)*angvelocity2*2))/(l2*(2*m1+m2-m2*Math.cos(2*angle-2*angle2)));
+//                angvelocity2 += angaccel * dt;
+//                angle2 += angvelocity * dt;
+//            }
+//            m3=l3=0;
+//            return //values
 //        }
 //        else if(nodes == 3) {
 //            double angaccel2, angvelocity2 = 0, angle2;
