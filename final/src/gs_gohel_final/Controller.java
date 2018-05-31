@@ -20,21 +20,17 @@ public class Controller implements EventHandler<KeyEvent> {
      */
     public void initialize() {
         this.Model = new Model();
-        this.update();
+        this.View = new View(2);
     }
-
 
     /*
     Updates the pendulum model with the user demands - either works with the simulation visual or the KE graph.
      Allows the user to see the time at end of simulation.
      */
     private void update() {
-        if(this.Model.getviewtype())
-            this.View.updateView(this.Model);
-        else
-            this.View.updateGraph(this.Model);
+        this.View.update(this.Model);
         //Display total time of simulation
-        this.timeLabel.setText(String.format("Time: ", this.Model.getTime()));
+        //this.timeLabel.setText(String.format("Time: ", this.Model.getTime()));
     }
 
     /*

@@ -16,7 +16,7 @@ public class Model {
     private double yCoordinate;
     private double damping;
     private double theta;
-    private double gravityAcceleration = -9.81;
+    private double gravityAcceleration;
     public Instant time;
 
     private int m1,m2,m3;
@@ -27,7 +27,11 @@ public class Model {
     /** @constructor */
     public Model() {
         viewtype=true;
-        startNewSimulation();
+        pendulumLength = 5;
+        nodeRadius = 1;
+        backgroundColor = Color.CYAN;
+        theta = 90;
+        gravityAcceleration = -9.81;
     }
 
     /*  Get method for viewtype
