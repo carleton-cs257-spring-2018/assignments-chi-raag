@@ -18,7 +18,7 @@ public class View extends JPanel {
     private Color[] nodeColors;
     private Color backgroundColor;
     private double theta;
-    private Graphics g;
+    private Graphics g = getGraphics();
 
 
     /* A set constructor for the size of the pendulum system.
@@ -26,15 +26,16 @@ public class View extends JPanel {
         @param viewtype: The view that the user wants.
      */
 
-    /** @constructor */
+    /**
+     * @constructor
+     */
     public View(int N) {
         this.N = N;
         //initialize(boolean viewtype);
-        g.create();
     }
 
     /* A get method for the size of the pendulum system.
-    */
+     */
     public int getN() {
         return this.N;
     }
@@ -48,15 +49,16 @@ public class View extends JPanel {
         else
             this.initializeGraph();
     }
+
     /* Initializes the graphic of the pendulum system.
-      * Graphic starts from the horizontal position.
-      * Default view of the system
-    */
+     * Graphic starts from the horizontal position.
+     * Default view of the system
+     */
     @Override
     public void paint(Graphics g) {
-        this.g.setColor(Color.WHITE);
-        this.g.fillRect(0,0, JApplet.WIDTH,  JApplet.HEIGHT );
-        this.g.setColor(Color.blue);
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, 100, 100);
+        g.setColor(Color.blue);
         int anchorX = JApplet.WIDTH / 2, anchorY = JApplet.HEIGHT / 4;
         int ballX = anchorX + (int) (Math.sin(theta) * pendulumLength);
         int ballY = anchorY + (int) (Math.cos(theta) * pendulumLength);
@@ -65,14 +67,13 @@ public class View extends JPanel {
         g.fillOval(ballX - 7, ballY - 7, 14, 14);
     }
 
-
-
     public void updateValues(Model model) {
         viewtype = model.getviewtype();
         pendulumLength = model.getPendulumLength();
         nodeRadius = model.getNodeRadius();
         theta = model.getTheta();
         backgroundColor = model.getBackgroundColor();
+        repaint();
     }
 
     public void update(Model model) {
@@ -85,24 +86,24 @@ public class View extends JPanel {
     }
 
     /* Initializes the data graph of the Kinetic energy of the pendulum system.
-      * Graphic starts from the horizontal position.
-      * Includes a timer to show the evolution of the system quantitatively.
-    */
+     * Graphic starts from the horizontal position.
+     * Includes a timer to show the evolution of the system quantitatively.
+     */
     public void initializeGraph() {
 
     }
 
     /* Updates the graph view with information from model.
-    * Will show different models as user inputs different demands.
-    *     @param model: the pendulum object
+     * Will show different models as user inputs different demands.
+     *     @param model: the pendulum object
      */
     public void updateGraph(Model model) {
 
     }
 
     /* Updates the pendulum visual with information from model.
-    * Will show different system as user inputs different demands.
-    *     @param model: the pendulum object
+     * Will show different system as user inputs different demands.
+     *     @param model: the pendulum object
      */
     public void updateView(Model model) {
 

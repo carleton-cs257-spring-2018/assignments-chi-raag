@@ -1,7 +1,7 @@
 /*
-* nPendulum JAVAFX project
-* Authors: Chiraag Gohel and Sharan Ganjam Seshachallam
-* CS 257, Spring 2018
+ * nPendulum JAVAFX project
+ * Authors: Chiraag Gohel and Sharan Ganjam Seshachallam
+ * CS 257, Spring 2018
 
  */
 
@@ -26,30 +26,32 @@ public class Model {
     private double dt;
     public double time;
 
-    private int m1,m2,m3;
-    private int l1,l2,l3;
+    private int m1, m2, m3;
+    private int l1, l2, l3;
 
     private double angVelocity, angVelocity2;
     private double angaccel, angaccel2;
 
     private double KE_sys;
 
-/* Notes for the system:
-* Origin is at the pivot point - so at t=0, x is l1 and y is 0.
-* dt will be 0.1 to test
-* m1,m2,l1,l2 are parameters that Controller.java will have to provide. All other variables are calculated here.
- */
+    /* Notes for the system:
+     * Origin is at the pivot point - so at t=0, x is l1 and y is 0.
+     * dt will be 0.1 to test
+     * m1,m2,l1,l2 are parameters that Controller.java will have to provide. All other variables are calculated here.
+     */
 
-    /** @constructor */
+    /**
+     * @constructor
+     */
     public Model() {
         //default values
-        viewtype=true;
+        viewtype = true;
         l1 = 5;
         nodeRadius = 1;
         backgroundColor = Color.CYAN;
         theta = 90;
         gravityAcceleration = -9.81;
-        dt=0.1;
+        dt = 0.1;
     }
 
     /*  Get method for viewtype
@@ -66,24 +68,25 @@ public class Model {
         this.viewtype = viewtype;
         return viewtype;
     }
+
     /*  Initializes a simulation with appropriate math needed
      *   to define and visualize an n-tuple pendulum
      *   @param nodes: number of nodes in pendulum
      */
     public void startNewSimulation(int nodes) {
-        this.theta=90;
-        this.time=0;
-        this.angaccel=-gravityAcceleration/this.l1;
-        this.angVelocity=0;
-        this.xCoordinate=l1;
-        this.yCoordinate=0;
-        this.KE_sys=0;
+        this.theta = 90;
+        this.time = 0;
+        this.angaccel = -gravityAcceleration / this.l1;
+        this.angVelocity = 0;
+        this.xCoordinate = l1;
+        this.yCoordinate = 0;
+        this.KE_sys = 0;
 
-        if (nodes==2) {
+        if (nodes == 2) {
             this.angaccel2 = -gravityAcceleration / (this.l1 + this.l2);
             this.angVelocity2 = 0;
-            this.xCoordinate=l1+l2;
-            this.yCoordinate=0;
+            this.xCoordinate = l1 + l2;
+            this.yCoordinate = 0;
         }
     }
 
@@ -91,8 +94,8 @@ public class Model {
      *   to visualize evolution of kinetic energy of an n-tuple pendulum
      */
     public void createGraph(int nodes) {
-        this.time=0;
-        this.KE_sys=0;
+        this.time = 0;
+        this.KE_sys = 0;
     }
 
     /*  Defines the set of values that define the system at each time step based on the number of nodes in pendulum
@@ -117,7 +120,7 @@ public class Model {
         }
     }
 
-        /******************* INCOMPLETE - FILLER CODE *******************/
+    /******************* INCOMPLETE - FILLER CODE *******************/
 //        else if(nodes == 3) {
 //            double angaccel2, angvelocity2 = 0, angle2;
 //            double angaccel3, angvelocity3 = 0, angle3;
@@ -133,66 +136,65 @@ public class Model {
 //
 //    }
 
-        /*  Defines the KE equations to be used based in the number of nodes in pendulum
-         *   @param nodes: number of nodes in pendulum
-         */
-
-        public void setFormulasGraph(int nodes) {
-            this.setFormulasSim(nodes);
-            double xVelocity = this.l1 * Math.cos(this.theta) * this.angVelocity;
-            double yVelocity = -this.l1 * Math.sin(this.theta) * this.angVelocity;
-            if (nodes == 1) {
-                this.KE_sys = 0.5 * m1 * (xVelocity * xVelocity + yVelocity * yVelocity);
-            } else if (nodes == 2) {
-                double x2Velocity = this.l1 * Math.cos(this.theta) * this.angVelocity + this.l2 * Math.cos(this.theta2) * this.angVelocity2;
-                double y2Velocity = -this.l1 * Math.sin(this.theta) * this.angVelocity - this.l2 * Math.sin(this.theta2) * this.angVelocity2;
-                this.KE_sys = 0.5 * m1 * (xVelocity*xVelocity + yVelocity*yVelocity) + 0.5 * m2 * (x2Velocity * x2Velocity + y2Velocity * y2Velocity);
-            }
-            this.time += this.dt;
+    /*  Defines the KE equations to be used based in the number of nodes in pendulum
+     *   @param nodes: number of nodes in pendulum
+     */
+    public void setFormulasGraph(int nodes) {
+        this.setFormulasSim(nodes);
+        double xVelocity = this.l1 * Math.cos(this.theta) * this.angVelocity;
+        double yVelocity = -this.l1 * Math.sin(this.theta) * this.angVelocity;
+        if (nodes == 1) {
+            this.KE_sys = 0.5 * m1 * (xVelocity * xVelocity + yVelocity * yVelocity);
+        } else if (nodes == 2) {
+            double x2Velocity = this.l1 * Math.cos(this.theta) * this.angVelocity + this.l2 * Math.cos(this.theta2) * this.angVelocity2;
+            double y2Velocity = -this.l1 * Math.sin(this.theta) * this.angVelocity - this.l2 * Math.sin(this.theta2) * this.angVelocity2;
+            this.KE_sys = 0.5 * m1 * (xVelocity * xVelocity + yVelocity * yVelocity) + 0.5 * m2 * (x2Velocity * x2Velocity + y2Velocity * y2Velocity);
         }
+        this.time += this.dt;
+    }
 
-        public void resetGraph() {
+    public void resetGraph() {
 
-        }
+    }
 
-        public void setPendulumLength ( int pendulumLength){
-            this.pendulumLength = pendulumLength;
-        }
+    public void setPendulumLength(int pendulumLength) {
+        this.pendulumLength = pendulumLength;
+    }
 
-        public int getPendulumLength () {
-            return this.pendulumLength;
-        }
+    public int getPendulumLength() {
+        return this.pendulumLength;
+    }
 
-        public void setNodeRadius ( int nodeRadius){
-            this.nodeRadius = nodeRadius;
-        }
+    public void setNodeRadius(int nodeRadius) {
+        this.nodeRadius = nodeRadius;
+    }
 
-        public int getNodeRadius () {
-            return this.nodeRadius;
-        }
+    public int getNodeRadius() {
+        return this.nodeRadius;
+    }
 
-        public void setPendulumColor (Color[]color){
-            this.nodeColors = color;
-        }
+    public void setPendulumColor(Color[] color) {
+        this.nodeColors = color;
+    }
 
-        public Color[] getPendulumColor () {
-            return this.nodeColors;
-        }
+    public Color[] getPendulumColor() {
+        return this.nodeColors;
+    }
 
-        public void setBackgroundColor (Color color){
-            this.backgroundColor = color;
-        }
+    public void setBackgroundColor(Color color) {
+        this.backgroundColor = color;
+    }
 
-        public Color getBackgroundColor () {
-            return backgroundColor;
-        }
+    public Color getBackgroundColor() {
+        return backgroundColor;
+    }
 
-        public void setDamping(int damping) {
-            this.damping = damping;
-        }
+    public void setDamping(int damping) {
+        this.damping = damping;
+    }
 
-        public double getTheta() {
-            return this.theta;
-        }
+    public double getTheta() {
+        return this.theta;
     }
 }
+
