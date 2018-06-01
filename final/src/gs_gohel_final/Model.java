@@ -146,7 +146,7 @@ public class Model {
             } else if (nodes == 2) {
                 double x2Velocity = this.l1 * Math.cos(this.theta) * this.angVelocity + this.l2 * Math.cos(this.theta2) * this.angVelocity2;
                 double y2Velocity = -this.l1 * Math.sin(this.theta) * this.angVelocity - this.l2 * Math.sin(this.theta2) * this.angVelocity2;
-                this.KE_sys = 0.5 * m1 * (xVelocity ^ 2 + yVelocity ^ 2) + 0.5 * m2 * (x2Velocity ^ 2 + y2Velocity ^ 2);
+                this.KE_sys = 0.5 * m1 * (xVelocity*xVelocity + yVelocity*yVelocity) + 0.5 * m2 * (x2Velocity * x2Velocity + y2Velocity * y2Velocity);
             }
             this.time += this.dt;
         }
