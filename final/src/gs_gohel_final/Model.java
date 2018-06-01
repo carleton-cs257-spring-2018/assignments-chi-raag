@@ -15,7 +15,7 @@ public class Model {
 
     private boolean viewtype;
     private int totaltime;
-    //private int pendulumLength;
+    private int pendulumLength;
     private int nodeRadius;
     private Color[] nodeColors;
     private Color backgroundColor;
@@ -24,6 +24,7 @@ public class Model {
     private double damping;
     private double theta, theta2;
     private double gravityAcceleration;
+    private double dt;
     public Instant time;
 
     private int m1,m2,m3;
@@ -138,14 +139,14 @@ public class Model {
      */
     public void setFormulasGraph(int nodes) {
         this.setFormulasSim(nodes);
-        double xVelocity= this.l1*cos(this.theta)*this.angVelocity;
-        double yVelocity= -this.l1*sin(this.theta)*this.angVelocity;
+        double xVelocity= this.l1*Math.cos(this.theta)*this.angVelocity;
+        double yVelocity= -this.l1*Math.sin(this.theta)*this.angVelocity;
         if (nodes == 1) {
             this.KE_sys=0.5*m1*(xVelocity^2+yVelocity^2);
         }
         else if (nodes == 2) {
-            double x2Velocity= this.l1*cos(this.theta)*this.angVelocity + this.l2*cos(this.theta2)*this.angVelocity2;
-            double y2Velocity= -this.l1*sin(this.theta)*this.angVelocity - this.l2*sin(this.theta2)*this.angVelocity2;
+            double x2Velocity= this.l1*Math.cos(this.theta)*this.angVelocity + this.l2*Math.cos(this.theta2)*this.angVelocity2;
+            double y2Velocity= -this.l1*Math.sin(this.theta)*this.angVelocity - this.l2*Math.sin(this.theta2)*this.angVelocity2;
             this.KE_sys=0.5*m1*(xVelocity^2+yVelocity^2)+0.5*m2*(x2Velocity^2+y2Velocity^2)
         }
         this.time += this.dt;

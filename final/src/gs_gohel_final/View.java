@@ -3,11 +3,11 @@ package gs_gohel_final;
 import javafx.scene.Group;
 
 import java.awt.*;
-import javax.swing.JApplet;
+import javax.swing.*;
 import java.awt.Graphics;
 import java.awt.Component;
 
-public class View extends Group {
+public class View extends JPanel {
 
     //The number of nodes that defines the size of the pendulum system
     private int N;
@@ -20,6 +20,7 @@ public class View extends Group {
     private double theta;
     private Graphics g;
 
+
     /* A set constructor for the size of the pendulum system.
         @param nodes: The number of nodes in the pendulum
         @param viewtype: The view that the user wants.
@@ -29,6 +30,7 @@ public class View extends Group {
     public View(int N) {
         this.N = N;
         //initialize(boolean viewtype);
+        g.create();
     }
 
     /* A get method for the size of the pendulum system.
@@ -50,10 +52,11 @@ public class View extends Group {
       * Graphic starts from the horizontal position.
       * Default view of the system
     */
-    public void paint() {
-        g.setColor(backgroundColor);
-        g.fillRect(0,0, JApplet.WIDTH,  JApplet.HEIGHT );
-        g.setColor(Color.blue);
+    @Override
+    public void paint(Graphics g) {
+        this.g.setColor(Color.WHITE);
+        this.g.fillRect(0,0, JApplet.WIDTH,  JApplet.HEIGHT );
+        this.g.setColor(Color.blue);
         int anchorX = JApplet.WIDTH / 2, anchorY = JApplet.HEIGHT / 4;
         int ballX = anchorX + (int) (Math.sin(theta) * pendulumLength);
         int ballY = anchorY + (int) (Math.cos(theta) * pendulumLength);
@@ -74,7 +77,6 @@ public class View extends Group {
 
     public void update(Model model) {
         updateValues(model);
-        paint();
     }
 
     public void initializeView() {

@@ -21,6 +21,7 @@ public class Controller implements EventHandler<KeyEvent> {
     public void initialize() {
         this.Model = new Model();
         this.View = new View(2);
+        View.updateValues(Model);
     }
 
     /*
