@@ -8,7 +8,7 @@
 package gs_gohel_final;
 
 import java.awt.*;
-import java.time.Instant;
+//import java.time.Instant;
 import java.lang.Math;
 
 public class Model {
@@ -25,7 +25,7 @@ public class Model {
     private double theta, theta2;
     private double gravityAcceleration;
     private double dt;
-    public Instant time;
+    public double time;
 
     private int m1,m2,m3;
     private int l1,l2,l3;
@@ -100,23 +100,23 @@ public class Model {
      *   @param nodes: number of nodes in pendulum
      */
 
-//    public void setFormulasSim(int nodes) {
-//        if (nodes == 1) {
-//                angaccel = -9.81 / this.l1 * sin(theta);
-//                angVelocity += angaccel * dt;
-//                theta += angVelocity * dt;
-//            m2=m3=l2=l3=0;
-//        }
-//        else if(nodes == 2) {
-//                angaccel = (-gravityAcceleration*(2*m1+m2)*sin(theta)-m2*gravityAcceleration*sin(theta-2*theta2)-2*sin(theta-theta2)*m2*(l2*angVelocity2*2+l1*cos(theta-theta2)*angVelocity*2))/(l1*(2*m1+m2-m2*cos(2*theta-2*theta2)));
-//                angVelocity += angaccel * dt;
-//                theta += angVelocity * dt;
-//
-//                angaccel2 = (2*sin(theta-theta2)*((m1+m2)*l1*angVelocity*2+gravityAcceleration*(m1+m2)*cos(theta)+l2*m2*cos(theta-theta2)*angVelocity2*2))/(l2*(2*m1+m2-m2*cos(2*theta-2*theta2)));
-//                angVelocity2 += angaccel2 * dt;
-//                theta2 += angVelocity2 * dt;
-//            m3=l3=0;
-//        }
+    public void setFormulasSim(int nodes) {
+        if (nodes == 1) {
+            angaccel = -9.81 / this.l1 * sin(theta);
+            angVelocity += angaccel * dt;
+            theta += angVelocity * dt;
+            m2=m3=l2=l3=0;
+        }
+        else if(nodes == 2) {
+            angaccel = (-gravityAcceleration*(2*m1+m2)*sin(theta)-m2*gravityAcceleration*sin(theta-2*theta2)-2*sin(theta-theta2)*m2*(l2*angVelocity2*2+l1*cos(theta-theta2)*angVelocity*2))/(l1*(2*m1+m2-m2*cos(2*theta-2*theta2)));
+            angVelocity += angaccel * dt;
+            theta += angVelocity * dt;
+
+            angaccel2 = (2*sin(theta-theta2)*((m1+m2)*l1*angVelocity*2+gravityAcceleration*(m1+m2)*cos(theta)+l2*m2*cos(theta-theta2)*angVelocity2*2))/(l2*(2*m1+m2-m2*cos(2*theta-2*theta2)));
+            angVelocity2 += angaccel2 * dt;
+            theta2 += angVelocity2 * dt;
+            m3=l3=0;
+       }
 
         /******************* INCOMPLETE - FILLER CODE *******************/
 //        else if(nodes == 3) {
@@ -142,27 +142,22 @@ public class Model {
         double xVelocity= this.l1*Math.cos(this.theta)*this.angVelocity;
         double yVelocity= -this.l1*Math.sin(this.theta)*this.angVelocity;
         if (nodes == 1) {
-            this.KE_sys=0.5*m1*(xVelocity^2+yVelocity^2);
+            this.KE_sys=0.5*m1*(xVelocity*xVelocity+yVelocity*yVelocity);
         }
         else if (nodes == 2) {
+<<<<<<< HEAD
             double x2Velocity= this.l1*Math.cos(this.theta)*this.angVelocity + this.l2*Math.cos(this.theta2)*this.angVelocity2;
             double y2Velocity= -this.l1*Math.sin(this.theta)*this.angVelocity - this.l2*Math.sin(this.theta2)*this.angVelocity2;
             this.KE_sys=0.5*m1*(xVelocity^2+yVelocity^2)+0.5*m2*(x2Velocity^2+y2Velocity^2)
+=======
+            double x2Velocity= this.l1*cos(this.theta)*this.angVelocity + this.l2*cos(this.theta2)*this.angVelocity2;
+            double y2Velocity= -this.l1*sin(this.theta)*this.angVelocity - this.l2*sin(this.theta2)*this.angVelocity2;
+            this.KE_sys=0.5*m1*(xVelocity*xVelocity+yVelocity*yVelocity)+0.5*m2*(x2Velocity*x2Velocity+y2Velocity*y2Velocity)
+>>>>>>> 39f62742ad02068c8673fffa011434b185552ee0
         }
         this.time += this.dt;
     }
 
-    /*  Modifies current view state as to stop
-         current simulation
-     */
-    public void endCurrentSimulation() {
-
-    }
-
-
-    /*  Modifies current view state to reset
-         the current graph simulation.
-     */
     public void resetGraph() {
 
     }
@@ -203,10 +198,6 @@ public class Model {
         this.damping = damping;
     }
 
-    //What does this method do? setFormulas is the method to update values
-    public void updateTheta(double theta) {
-
-    }
 
     public double getTheta() {
         return this.theta;
