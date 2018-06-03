@@ -21,7 +21,7 @@ public class Controller implements EventHandler<KeyEvent> {
     }
 
     /*
-     Initializes a pendulum model.
+     Initializes a pendulum model. Default is a double pendulum (?)
      */
     public void initialize() {
         this.Model = new Model();
