@@ -9,6 +9,7 @@ package gs_gohel_final;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -17,8 +18,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("gs_gohel_final.fxml"));
         Parent root = loader.load();
+        Scene scene = new Scene(root, 300, 275);
         primaryStage.setTitle("The Pendulum");
-
+        primaryStage.setScene(scene);
         Controller controller = loader.getController();
         root.setOnKeyPressed(controller);
         controller.update();
