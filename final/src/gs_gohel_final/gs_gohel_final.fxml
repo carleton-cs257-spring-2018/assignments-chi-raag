@@ -17,7 +17,7 @@
     <bottom>
         <HBox prefHeight="35" style="-fx-padding: 10px, 5px, 10px, 5px; -fx-background-color: #F3B61D">
             <Label style="-fx-font-size: 140%; -fx-text-fill: white"
-                   text="          Reset: R / Single pendulum: 1 / Double Pendulum: 2" />
+                   text="   Reset current system: R / Single pendulum: 1 / Double Pendulum: 2" />
         </HBox>
     </bottom>
 </BorderPane>

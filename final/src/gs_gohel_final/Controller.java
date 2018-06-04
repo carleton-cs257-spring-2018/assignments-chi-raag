@@ -25,6 +25,8 @@ public class Controller implements EventHandler<KeyEvent> {
     @FXML private View view;
     private Model model;
     private final int FRAMES_PER_SECOND = 20;
+    EventHandler<ActionEvent> updater;
+    Timeline timeline;
 
     /*
      * @constructor - Empty.
@@ -44,9 +46,9 @@ public class Controller implements EventHandler<KeyEvent> {
 
     private void startTimer(int nodes) {
 
-        EventHandler<ActionEvent> updater = event -> update(nodes);
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.0/FRAMES_PER_SECOND), updater));
-        timeline.setCycleCount(Timeline.INDEFINITE);
+        updater = event -> update(nodes);
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1.0/FRAMES_PER_SECOND), updater));
+        timeline.setCycleCount(200);//Timeline.INDEFINITE);
         timeline.play();
 
     }
@@ -82,21 +84,32 @@ public class Controller implements EventHandler<KeyEvent> {
         boolean keyRecognized = true;
 
         KeyCode code = keyEvent.getCode();
+
         if (code == KeyCode.DIGIT1) {
             System.out.print("what");
+            if (timeline != null)
+            timeline.stop();
             this.startTimer(1);
             this.model.startNewSimulation(1);
             this.view.keyPress(1);
             this.update(1);
         } else if (code == KeyCode.DIGIT2) {
             System.out.print("what2");
+            if (timeline != null)
+            timeline.stop();
+
             this.startTimer(2);
             this.model.startNewSimulation(2);
             this.view.keyPress(2);
             this.update(2);
         } else if (code == KeyCode.R) {
-            //Default 1 for now
+            System.out.println("reset");
+            if (timeline != null)
+            timeline.stop();
+            this.startTimer(model.nodes);
             this.model.startNewSimulation(model.nodes);
+            this.view.keyPress(model.nodes);
+
             this.update(model.nodes);
         } /*else if (code == KeyCode.G) {
             if (this.model.getviewtype()) {
