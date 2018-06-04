@@ -135,8 +135,6 @@ public class Model {
             */
 
             angaccel2 = (2 * Math.sin(theta - theta2) * ((m1 + m2) * l1 * angVelocity * angVelocity + gravityAcceleration * (m1 + m2) * Math.cos(theta) + l2 * m2 * Math.cos(theta - theta2) * angVelocity2 * angVelocity2)) / (l2 * (2 * m1 + m2 - m2 * Math.cos(2 * theta - 2 * theta2)));
-            //System.out.println("Denom");
-
             angVelocity2 += angaccel2 * dt;
             theta2 += angVelocity2 * dt;
         }
