@@ -55,7 +55,7 @@ public class Controller {
     Updates the pendulum model with the user demands - either works with the simulation visual or the KE graph.
      Allows the user to see the time at end of simulation.
      */
-    public void update(int) {
+    public void update() {
         model.updateSim(1);
         this.view.update(this.model);
 

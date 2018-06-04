@@ -125,8 +125,8 @@ public class Model {
         xCoordinate=l1*Math.sin(theta);
         yCoordinate=l1*Math.cos(theta);
         if (nodes==2) {
-            xCoordinate2=xCoordinate+l2*Math.sin(theta);
-            yCoordinate2=yCoordinate+l2*Math.cos(theta);
+            xCoordinate2=xCoordinate+l2*Math.sin(theta2);
+            yCoordinate2=yCoordinate+l2*Math.cos(theta2);
         }
     }
 
@@ -213,7 +213,7 @@ public class Model {
     public double getyCoordinate() {
         return this.yCoordinate;
     }
-    public double getxCoordinate22() {
+    public double getxCoordinate2() {
         return this.xCoordinate2;
     }
     public double getyCoordinate2() {

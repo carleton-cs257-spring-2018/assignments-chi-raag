@@ -26,8 +26,11 @@ public class View extends Pane {
     Circle circle2;
     Circle circle3;
     Line line;
+    Line line2;
     double x;
     double y;
+    double x2;
+    double y2;
 
 
     /* A set constructor for the size of the pendulum system.
@@ -53,16 +56,21 @@ public class View extends Pane {
         // Binding the line and the circle1 together, so they move synchronized
         line.startXProperty().bind(circle1.centerXProperty().add(circle1.translateXProperty()));
         line.startYProperty().bind(circle1.centerYProperty().add(circle1.translateYProperty()));
+        circle3 = new Circle(this.getMaxWidth()/1.5, this.getMaxHeight()/1.5, 14);
+        line2 = new Line(circle3.getCenterX(), circle3.getCenterY(), circle1.getCenterX(), circle1.getCenterY());
+        line2.startXProperty().bind(circle3.centerXProperty().add(circle3.translateXProperty()));
+        line2.startYProperty().bind(circle3.centerYProperty().add(circle3.translateYProperty()));
 
         // Add circles and line to the pane
-        getChildren().addAll(line, circle1, circle2);
+        getChildren().addAll(line, line2, circle1, circle2, circle3);
 
-        circle3 = new Circle()
     }
 
     public void moveCircle() {
         circle1.setTranslateX(x);
         circle1.setTranslateY(y);
+        circle3.setTranslateY(y2);
+        circle3.setTranslateX(x2);
     }
 
     /* Initializes a visual for the system depending on viewtype of model object
@@ -71,8 +79,10 @@ public class View extends Pane {
     public void update(Model model) {
         x = model.getxCoordinate() * this.getScene().getWidth() * .03 + this.getScene().getWidth()*0.5;
         y = 200+ model.getyCoordinate() * this.getScene().getHeight() * .03;
-        System.out.println(x);
-        System.out.println(y);
+        x2 = model.getxCoordinate2() * this.getScene().getWidth() * .03 + this.getScene().getWidth()*0.5;
+        y2 = 300+ model.getyCoordinate2() * this.getScene().getHeight() * .03;
+        System.out.println(x2);
+        System.out.println(y2);
 
         moveCircle();
     }
