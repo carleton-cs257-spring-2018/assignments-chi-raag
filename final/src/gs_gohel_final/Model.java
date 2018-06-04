@@ -87,10 +87,11 @@ public class Model {
         this.KE_sys = 0;
 
         if (nodes == 2) {
+            theta2 = Math.toRadians(90);
             this.angaccel2 = -gravityAcceleration / (this.l1 + this.l2);
             this.angVelocity2 = 0;
-            this.xCoordinate = l1 + l2;
-            this.yCoordinate = 0;
+            this.xCoordinate2 = l1 + l2;
+            this.yCoordinate2 = 0;
         }
     }
 
