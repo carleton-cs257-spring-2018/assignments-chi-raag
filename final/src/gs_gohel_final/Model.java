@@ -109,6 +109,7 @@ public class Model {
             angVelocity += angaccel * dt;
             theta += angVelocity * dt;
             m2 = m3 = l2 = l3 = 0;
+
         } else if (nodes == 2) {
             angaccel = (-gravityAcceleration * (2 * m1 + m2) * Math.sin(theta) - m2 * gravityAcceleration * Math.sin(theta - 2 * theta2) - 2 * Math.sin(theta - theta2) * m2 * (l2 * angVelocity2 * 2 + l1 * Math.cos(theta - theta2) * angVelocity * 2)) / (l1 * (2 * m1 + m2 - m2 * Math.cos(2 * theta - 2 * theta2)));
             angVelocity += angaccel * dt;
@@ -118,6 +119,12 @@ public class Model {
             angVelocity2 += angaccel2 * dt;
             theta2 += angVelocity2 * dt;
             m3 = l3 = 0;
+        }
+        xCoordinate=l1*Math.sin(theta);
+        yCoordinate=l1*Math.cos(theta);
+        if (nodes==2) {
+            xCoordinate2=xCoordinate+l2*Math.sin(theta);
+            yCoordinate2=yCoordinate+l2*Math.cos(theta);
         }
     }
 
