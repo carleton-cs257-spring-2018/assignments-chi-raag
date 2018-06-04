@@ -52,7 +52,7 @@ public class Model {
         m2=1;
         nodeRadius = 1;
         backgroundColor = Color.CYAN;
-        theta = 90;
+        theta = Math.toRadians(90);
         gravityAcceleration = -9.81;
         dt = 0.1;
         time=0;
@@ -78,7 +78,7 @@ public class Model {
      *   @param nodes: number of nodes in pendulum
      */
     public void startNewSimulation(int nodes) {
-        this.theta = 90;
+        this.theta = Math.toRadians(90);
         this.time = 0;
         this.angaccel = -gravityAcceleration / this.l1;
         this.angVelocity = 0;
@@ -108,7 +108,7 @@ public class Model {
 
     public void updateSim(int nodes) {
         if (nodes == 1) {
-            angaccel = -9.81 / this.l1 * Math.sin(theta);
+            angaccel = gravityAcceleration / this.l1 * Math.sin(theta);
             angVelocity += angaccel * dt;
             theta += angVelocity * dt;
             m2 = l2  = 0;

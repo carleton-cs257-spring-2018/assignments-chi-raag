@@ -38,13 +38,14 @@ public class View extends Pane {
      * @constructor
      */
     public View() {
-        line = new Line(150, 100, 250, 100);
-        line.setStrokeWidth(3);
         Model model = new Model();
-        circle1 = new Circle(model.getxCoordinate(), model.getyCoordinate(), 14);
+
+        line = new Line(150, 100, 250, model.getyCoordinate());
+        line.setStrokeWidth(3);
+        circle1 = new Circle(300+model.getxCoordinate(), model.getyCoordinate(), 14);
 
         // Create another circle
-        circle2 = new Circle(250, 100, 5);
+        circle2 = new Circle(250, model.getyCoordinate(), 5);
 
         // Binding the line and the circle1 together, so they move synchronized
         line.startXProperty().bind(circle1.centerXProperty().add(circle1.translateXProperty()));
@@ -63,8 +64,11 @@ public class View extends Pane {
         @param model: the pendulum object
      */
     public void update(Model model) {
-        x = x + model.getxCoordinate();
-        y = y + model.getyCoordinate();
+        x = model.getxCoordinate();
+        y = model.getyCoordinate();
+        System.out.println(x);
+        System.out.println(y);
+
         moveCircle();
     }
 
