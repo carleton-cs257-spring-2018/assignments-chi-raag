@@ -5,7 +5,7 @@
 
  */
 
-package edu.carleton.ganjam;
+package gs_gohel_final;
 
 import java.awt.*;
 import java.lang.Math;
