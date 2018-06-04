@@ -5,32 +5,29 @@
 
  */
 
-package gs_gohel_final;
+package edu.carleton.ganjam;
 
-import javafx.embed.swing.JFXPanel;
-
-import javax.swing.*;
 import java.awt.*;
 import java.lang.Math;
 
-public class Model extends JFXPanel {
+public class Model {
 
     private boolean viewtype;
     private int totaltime;
-    private int pendulumLength;
+    //private int pendulumLength;
     private int nodeRadius;
     private Color[] nodeColors;
     private Color backgroundColor;
     private double xCoordinate, xCoordinate2;
     private double yCoordinate, yCoordinate2;
-    private double damping;
+    //private double damping;
     private double theta, theta2;
     private double gravityAcceleration;
     private double dt;
     public double time;
 
-    private int m1, m2, m3;
-    private int l1, l2, l3;
+    private int m1, m2;
+    private int l1, l2;
 
     private double angVelocity, angVelocity2;
     private double angaccel, angaccel2;
@@ -50,6 +47,9 @@ public class Model extends JFXPanel {
         //default values
         viewtype = true;
         l1 = 5;
+        l2 = 5;
+        m1=1;
+        m2=1;
         nodeRadius = 1;
         backgroundColor = Color.CYAN;
         theta = 90;
@@ -111,7 +111,7 @@ public class Model extends JFXPanel {
             angaccel = -9.81 / this.l1 * Math.sin(theta);
             angVelocity += angaccel * dt;
             theta += angVelocity * dt;
-            m2 = m3 = l2 = l3 = 0;
+            m2 = l2  = 0;
 
         } else if (nodes == 2) {
             angaccel = (-gravityAcceleration * (2 * m1 + m2) * Math.sin(theta) - m2 * gravityAcceleration * Math.sin(theta - 2 * theta2) - 2 * Math.sin(theta - theta2) * m2 * (l2 * angVelocity2 * 2 + l1 * Math.cos(theta - theta2) * angVelocity * 2)) / (l1 * (2 * m1 + m2 - m2 * Math.cos(2 * theta - 2 * theta2)));
@@ -121,7 +121,6 @@ public class Model extends JFXPanel {
             angaccel2 = (2 * Math.sin(theta - theta2) * ((m1 + m2) * l1 * angVelocity * 2 + gravityAcceleration * (m1 + m2) * Math.cos(theta) + l2 * m2 * Math.cos(theta - theta2) * angVelocity2 * 2)) / (l2 * (2 * m1 + m2 - m2 * Math.cos(2 * theta - 2 * theta2)));
             angVelocity2 += angaccel2 * dt;
             theta2 += angVelocity2 * dt;
-            m3 = l3 = 0;
         }
         xCoordinate=l1*Math.sin(theta);
         yCoordinate=l1*Math.cos(theta);
@@ -168,13 +167,13 @@ public class Model extends JFXPanel {
 
     }
 
-    public void setPendulumLength(int pendulumLength) {
-        this.pendulumLength = pendulumLength;
-    }
+    //public void setPendulumLength(int pendulumLength) {
+      //  this.pendulumLength = pendulumLength;
+    //}
 
-    public int getPendulumLength() {
-        return this.pendulumLength;
-    }
+    //public int getPendulumLength() {
+      //  return this.pendulumLength;
+    //}
 
     public void setNodeRadius(int nodeRadius) {
         this.nodeRadius = nodeRadius;
@@ -200,12 +199,25 @@ public class Model extends JFXPanel {
         return backgroundColor;
     }
 
-    public void setDamping(int damping) {
-        this.damping = damping;
-    }
+    //public void setDamping(int damping) {
+      //  this.damping = damping;
+    //}
 
     public double getTheta() {
         return this.theta;
+    }
+
+    public double getxCoordinate() {
+        return this.xCoordinate;
+    }
+    public double getyCoordinate() {
+        return this.yCoordinate;
+    }
+    public double getxCoordinate22() {
+        return this.xCoordinate2;
+    }
+    public double getyCoordinate2() {
+        return this.yCoordinate2;
     }
 }
 
