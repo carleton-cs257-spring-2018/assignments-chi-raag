@@ -1,5 +1,6 @@
 package gs_gohel_final;
 
+import javafx.embed.swing.JFXPanel;
 import javafx.scene.Group;
 
 import java.awt.*;
@@ -7,7 +8,7 @@ import javax.swing.*;
 import java.awt.Graphics;
 import java.awt.Component;
 
-public class View extends JPanel {
+public class View extends Group{
 
     //The number of nodes that defines the size of the pendulum system
     private int N;
@@ -18,7 +19,7 @@ public class View extends JPanel {
     private Color[] nodeColors;
     private Color backgroundColor;
     private double theta;
-    private Graphics g = getGraphics();
+    private Model model = new Model();
 
 
     /* A set constructor for the size of the pendulum system.
@@ -32,6 +33,14 @@ public class View extends JPanel {
     public View(int N) {
         this.N = N;
         //initialize(boolean viewtype);
+    }
+
+    public View() {
+
+    }
+
+    public javafx.scene.Scene yes() {
+        return model.getScene();
     }
 
     /* A get method for the size of the pendulum system.
@@ -50,22 +59,8 @@ public class View extends JPanel {
             this.initializeGraph();
     }
 
-    /* Initializes the graphic of the pendulum system.
-     * Graphic starts from the horizontal position.
-     * Default view of the system
-     */
-    @Override
-    public void paint(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, 100, 100);
-        g.setColor(Color.blue);
-        int anchorX = JApplet.WIDTH / 2, anchorY = JApplet.HEIGHT / 4;
-        int ballX = anchorX + (int) (Math.sin(theta) * pendulumLength);
-        int ballY = anchorY + (int) (Math.cos(theta) * pendulumLength);
-        g.drawLine(anchorX, anchorY, ballX, ballY);
-        g.fillOval(anchorX - 3, anchorY - 4, 7, 7);
-        g.fillOval(ballX - 7, ballY - 7, 14, 14);
-    }
+
+
 
     public void updateValues(Model model) {
         viewtype = model.getviewtype();
@@ -73,7 +68,6 @@ public class View extends JPanel {
         nodeRadius = model.getNodeRadius();
         theta = model.getTheta();
         backgroundColor = model.getBackgroundColor();
-        repaint();
     }
 
     public void update(Model model) {
