@@ -41,13 +41,15 @@ public class View extends Pane {
     public View() {
         Model model = new Model();
 
-        line = new Line(150, 100, 300, model.getyCoordinate());
-        line.setStrokeWidth(3);
+
         circle1 = new Circle(this.getMaxWidth()/2, this.getMaxHeight()/2, 14);
 
-        // Create another circle
-        circle2 = new Circle(300, model.getyCoordinate(), 5);
 
+        // Create another circle
+        circle2 = new Circle(300, 200+model.getyCoordinate(), 5);
+
+        line = new Line(circle1.getCenterX(), circle1.getCenterY(), 300, circle2.getCenterY());
+        line.setStrokeWidth(3);
         // Binding the line and the circle1 together, so they move synchronized
         line.startXProperty().bind(circle1.centerXProperty().add(circle1.translateXProperty()));
         line.startYProperty().bind(circle1.centerYProperty().add(circle1.translateYProperty()));
@@ -68,7 +70,7 @@ public class View extends Pane {
      */
     public void update(Model model) {
         x = model.getxCoordinate() * this.getScene().getWidth() * .03 + this.getScene().getWidth()*0.5;
-        y = model.getyCoordinate() * this.getScene().getHeight() * .03;
+        y = 200+ model.getyCoordinate() * this.getScene().getHeight() * .03;
         System.out.println(x);
         System.out.println(y);
 
