@@ -64,8 +64,13 @@ public class View extends Pane {
         line2.endXProperty().bind(circle1.centerXProperty().add(circle1.translateXProperty()));
         line2.endYProperty().bind(circle1.centerYProperty().add(circle1.translateYProperty()));
 
-        // Add circles and line to the pane
-        getChildren().addAll(line, line2, circle1, circle2, circle3);
+        if (model.nodes == 1) {
+            getChildren().addAll(line, circle1, circle2);
+        }
+
+        if (model.nodes == 2) {
+            getChildren().addAll(line, line2, circle1, circle2, circle3);
+        }
 
     }
 

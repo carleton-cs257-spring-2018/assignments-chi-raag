@@ -74,8 +74,8 @@ public class Controller {
      User hits a specific key to stop current simulation, then inputs new size or demand for new view.
      Model updated appropriately.
      */
-    // @Override
-   public void handle(KeyEvent keyEvent) {
+
+    public void handle(KeyEvent keyEvent) {
         //Uses Model.setviewtype() to manipulate viewtype depending on user input
 
         //boolean pressRecognized = true;
