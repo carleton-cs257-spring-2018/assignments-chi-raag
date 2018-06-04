@@ -1,8 +1,9 @@
-package gs_gohel_final;
+package edu.carleton.ganjam;
 
 import javafx.fxml.FXML;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class Controller implements EventHandler<KeyEvent> {
@@ -14,8 +15,8 @@ public class Controller implements EventHandler<KeyEvent> {
     private View View;
     private Model Model;
 
-    /**
-     * @constructor
+    /*
+     * @constructor - Empty.
      */
     public Controller() {
     }
@@ -25,7 +26,7 @@ public class Controller implements EventHandler<KeyEvent> {
      */
     public void initialize() {
         this.Model = new Model();
-        this.View = new View(2);
+        this.View = new View(1);
         View.updateValues(Model);
     }
 
@@ -36,7 +37,11 @@ public class Controller implements EventHandler<KeyEvent> {
     public void update() {
         this.View.update(this.Model);
         //Display total time of simulation
-        //this.timeLabel.setText(String.format("Time: ", this.Model.getTime()));
+        this.timeLabel.setText("Time: "+ (String.valueOf(this.Model.time)));
+        if(this.Model.getviewtype()==true)
+            this.messageLabel.setText("Simulation of the pendulum in space");
+        else
+            this.messageLabel.setText("Kinetic Energy of Pendulum");
     }
 
     /*
@@ -50,7 +55,28 @@ public class Controller implements EventHandler<KeyEvent> {
     public void handle(KeyEvent keyEvent) {
         //Uses Model.setviewtype() to manipulate viewtype depending on user input
 
-        boolean pressRecognized = true;
-    }
+        //boolean pressRecognized = true;
+        boolean keyRecognized = true;
+        KeyCode code = keyEvent.getCode();
+        if (code == KeyCode.DIGIT1) {
+            this.Model.startNewSimulation(1);
+        } else if (code == KeyCode.DIGIT2) {
+            this.Model.startNewSimulation(2);
+        } else if (code == KeyCode.G) {
+            if (this.Model.getviewtype()) {
+                this.Model.setviewtype(false);
+            }
+        } else if (code == KeyCode.S) {
+            if (!(this.Model.getviewtype())) {
+                this.Model.setviewtype(true);
+            }
+        } else {
+            keyRecognized = false;
+        }
 
+        if (keyRecognized) {
+            this.update();
+            keyEvent.consume();
+        }
+    }
 }
