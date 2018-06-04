@@ -1,4 +1,4 @@
-package gs_gohel_final;
+package edu.carleton.ganjam;
 
 
 import javafx.fxml.FXML;

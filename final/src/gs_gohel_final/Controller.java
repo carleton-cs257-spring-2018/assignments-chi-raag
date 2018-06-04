@@ -1,4 +1,4 @@
-package gs_gohel_final;
+package edu.carleton.ganjam;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -18,7 +18,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class Controller {
+public class Controller implements EventHandler<KeyEvent>{
 
     @FXML private Label timeLabel;
     @FXML private Label messageLabel;
