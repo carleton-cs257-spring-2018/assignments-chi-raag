@@ -4,7 +4,7 @@ CS 257, 18/SP
 Adapted from Jeff Ondich's Daleks project
 25 May 2018
  */
-package gs_gohel_final;
+package edu.carleton.ganjam;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

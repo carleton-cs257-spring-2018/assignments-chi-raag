@@ -1,4 +1,4 @@
-package gs_gohel_final;
+package edu.carleton.ganjam;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -39,12 +39,12 @@ public class Controller implements EventHandler<KeyEvent> {
      Initializes a pendulum model. Default is a double pendulum (?)
      */
     public void initialize() {
-        this.startTimer();
+       // this.startTimer();
     }
 
-    private void startTimer() {
+    private void startTimer(int nodes) {
 
-        EventHandler<ActionEvent> updater = event -> update();
+        EventHandler<ActionEvent> updater = event -> update(nodes);
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.0/FRAMES_PER_SECOND), updater));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -55,8 +55,8 @@ public class Controller implements EventHandler<KeyEvent> {
     Updates the pendulum model with the user demands - either works with the simulation visual or the KE graph.
      Allows the user to see the time at end of simulation.
      */
-    public void update() {
-        model.updateSim(2);
+    public void update(int nodes) {
+        model.updateSim(nodes);
         this.view.update(this.model);
 
         //Display total time of simulation
@@ -80,21 +80,24 @@ public class Controller implements EventHandler<KeyEvent> {
 
         //boolean pressRecognized = true;
         boolean keyRecognized = true;
+
         KeyCode code = keyEvent.getCode();
         if (code == KeyCode.DIGIT1) {
             System.out.print("what");
+            this.startTimer(1);
             this.model.startNewSimulation(1);
-            model.updateSim(1);
             this.view.keyPress(1);
+            this.update(1);
         } else if (code == KeyCode.DIGIT2) {
+            System.out.print("what2");
+            this.startTimer(2);
             this.model.startNewSimulation(2);
-            model.updateSim(2);
             this.view.keyPress(2);
+            this.update(2);
         } else if (code == KeyCode.R) {
             //Default 1 for now
-            this.model.startNewSimulation(1);
-            model.updateSim(1);
-            this.view.update(this.model);
+            this.model.startNewSimulation(model.nodes);
+            this.update(model.nodes);
         } /*else if (code == KeyCode.G) {
             if (this.model.getviewtype()) {
                 this.model.setviewtype(false);
@@ -109,6 +112,7 @@ public class Controller implements EventHandler<KeyEvent> {
 
         if (keyRecognized) {
             System.out.println("hey");
+
            // this.update();
             keyEvent.consume();
         }

@@ -1,4 +1,4 @@
-package gs_gohel_final;
+package edu.carleton.ganjam;
 
 
 import javafx.fxml.FXML;
@@ -43,7 +43,7 @@ public class View extends Pane {
      */
     public View() {
         Model model = new Model();
-        System.out.println(model.nodes);
+        //System.out.println(model.nodes);
 
         circle1 = new Circle(this.getMaxWidth()/2, this.getMaxHeight()/2, 14);
 
@@ -85,11 +85,12 @@ public class View extends Pane {
             }
         }
         else if (nodes == 2) {
-            if (getChildren() == null) {
+            System.out.println("hi2");
+            if (!getChildren().contains(circle2)) {
                 getChildren().addAll(line, line2, circle1, circle2, circle3);
             } else {
                 int i = getChildren().size();
-                getChildren().remove(0, i-1);
+                getChildren().remove(0, i);
                 getChildren().addAll(line, line2, circle1, circle2, circle3);
             }
         }
