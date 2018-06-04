@@ -1,4 +1,4 @@
-package gs_gohel_final;
+package edu.carleton.ganjam;
 
 
 import javafx.fxml.FXML;
@@ -64,8 +64,8 @@ public class View extends Pane {
         @param model: the pendulum object
      */
     public void update(Model model) {
-        x = model.getxCoordinate() * this.getScene().getWidth() * .06 + 200;
-        y = model.getyCoordinate() * this.getScene().getHeight() * .06;
+        x = model.getxCoordinate() * this.getScene().getWidth() * .03 + this.getScene().getWidth()*0.5;
+        y = model.getyCoordinate() * this.getScene().getHeight() * .03;
         System.out.println(x);
         System.out.println(y);
 
