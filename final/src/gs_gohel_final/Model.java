@@ -214,7 +214,7 @@ public class Model {
     public double getyCoordinate() {
         return this.yCoordinate;
     }
-    public double getxCoordinate22() {
+    public double getxCoordinate2() {
         return this.xCoordinate2;
     }
     public double getyCoordinate2() {
