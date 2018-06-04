@@ -40,7 +40,7 @@ public class View extends Pane {
     public View() {
         Model model = new Model();
 
-        line = new Line(150, 100, 250, model.getyCoordinate());
+        line = new Line(150, 100, 300, model.getyCoordinate());
         line.setStrokeWidth(3);
         circle1 = new Circle(this.getMaxWidth()/2, this.getMaxHeight()/2, 14);
 
@@ -64,8 +64,8 @@ public class View extends Pane {
         @param model: the pendulum object
      */
     public void update(Model model) {
-        x = model.getxCoordinate() * this.getScene().getWidth() * .03 + 200;
-        y = model.getyCoordinate() * this.getScene().getHeight() * .03;
+        x = model.getxCoordinate() * this.getScene().getWidth() * .06 + 200;
+        y = model.getyCoordinate() * this.getScene().getHeight() * .06;
         System.out.println(x);
         System.out.println(y);
 
