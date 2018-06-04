@@ -5,7 +5,7 @@
 
  */
 
-package edu.carleton.ganjam;
+package gs_gohel_final;
 
 import java.awt.*;
 import java.lang.Math;
@@ -15,8 +15,7 @@ public class Model {
     private boolean viewtype;
     private int totaltime;
     //private int pendulumLength;
-    private int nodeRadius;
-    private Color[] nodeColors;
+    private String nodeColor;
     private Color backgroundColor;
     private double xCoordinate, xCoordinate2;
     private double yCoordinate, yCoordinate2;
@@ -26,6 +25,7 @@ public class Model {
     private double dt;
     public double time;
     public int nodes;
+    private double KE_sys;
 
     private int m1, m2;
     private int l1, l2;
@@ -33,7 +33,6 @@ public class Model {
     private double angVelocity, angVelocity2;
     private double angaccel, angaccel2;
 
-    private double KE_sys;
 
     /* Notes for the system:
      * Origin is at the pivot point - so at t=0, x is l1 and y is 0.
@@ -51,13 +50,14 @@ public class Model {
         l2 = 5;
         m1=1;
         m2=1;
-        nodeRadius = 1;
         backgroundColor = Color.CYAN;
         theta = Math.toRadians(90);
         gravityAcceleration = 9.81;
         dt = 0.1;
         time=0;
         nodes=1;
+        KE_sys=0;
+        nodeColor="gold";
     }
 
     /*  Get method for viewtype
@@ -87,7 +87,7 @@ public class Model {
         this.angVelocity = 0;
         this.xCoordinate = l1;
         this.yCoordinate = 0;
-        this.KE_sys = 0;
+        this.KE_sys=0;
 
         if (nodes == 2) {
             theta2 = Math.toRadians(90);
@@ -103,7 +103,6 @@ public class Model {
      */
     public void createGraph(int nodes) {
         this.time = 0;
-        this.KE_sys = 0;
     }
 
     /*  Defines the set of values that define the system at each time step based on the number of nodes in pendulum
@@ -179,9 +178,6 @@ public class Model {
         this.time += this.dt;
     }
 
-    public void resetGraph() {
-
-    }
 
     //public void setPendulumLength(int pendulumLength) {
       //  this.pendulumLength = pendulumLength;
@@ -191,20 +187,13 @@ public class Model {
       //  return this.pendulumLength;
     //}
 
-    public void setNodeRadius(int nodeRadius) {
-        this.nodeRadius = nodeRadius;
+
+    public void setPendulumColor(String color) {
+        this.nodeColor = color;
     }
 
-    public int getNodeRadius() {
-        return this.nodeRadius;
-    }
-
-    public void setPendulumColor(Color[] color) {
-        this.nodeColors = color;
-    }
-
-    public Color[] getPendulumColor() {
-        return this.nodeColors;
+    public String getPendulumColor() {
+        return this.nodeColor;
     }
 
     public void setBackgroundColor(Color color) {

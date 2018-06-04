@@ -1,4 +1,4 @@
-package edu.carleton.ganjam;
+package gs_gohel_final;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
+import javafx.animation.PauseTransition;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -20,42 +21,38 @@ import java.util.TimerTask;
 
 public class Controller implements EventHandler<KeyEvent> {
 
-    @FXML private Label timeLabel;
-    @FXML private Label messageLabel;
+    //@FXML private Label timeLabel;
     @FXML private View view;
     private Model model;
     private final int FRAMES_PER_SECOND = 20;
     EventHandler<ActionEvent> updater;
     Timeline timeline;
 
+    //Switch to show if timeline is running or not
+    boolean running;
     /*
-     * @constructor - Empty.
+     * @constructor - Initializes model and running.
      */
     public Controller() {
-        timeLabel=null;
-        messageLabel=null;
+        //timeLabel=null;
         model = new Model();
+        running=false;
     }
-
-    /*
-     Initializes a pendulum model. Default is a double pendulum (?)
+    /* Starts the timer for the view Pane
+        System runs indefinitely unless user overrides.
      */
-    public void initialize() {
-       // this.startTimer();
-    }
-
     private void startTimer(int nodes) {
 
         updater = event -> update(nodes);
         timeline = new Timeline(new KeyFrame(Duration.seconds(1.0/FRAMES_PER_SECOND), updater));
-        timeline.setCycleCount(200);//Timeline.INDEFINITE);
-        timeline.play();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.playFromStart();
+        running = true;
 
     }
 
     /*
-    Updates the pendulum model with the user demands - either works with the simulation visual or the KE graph.
-     Allows the user to see the time at end of simulation.
+    Updates the pendulum model with the new nodes in the simulation visual.
      */
     public void update(int nodes) {
         model.updateSim(nodes);
@@ -71,8 +68,7 @@ public class Controller implements EventHandler<KeyEvent> {
 
     /*
      Allows the user to stop the current visual.
-     Switch view between simulation and KE graph.
-     Or stop the simulation and set a new pendulum size.
+     Stop the simulation and set a new pendulum size, or pause/reset the simulation.
      User hits a specific key to stop current simulation, then inputs new size or demand for new view.
      Model updated appropriately.
      */
@@ -86,7 +82,6 @@ public class Controller implements EventHandler<KeyEvent> {
         KeyCode code = keyEvent.getCode();
 
         if (code == KeyCode.DIGIT1) {
-            System.out.print("what");
             if (timeline != null)
             timeline.stop();
             this.startTimer(1);
@@ -94,7 +89,6 @@ public class Controller implements EventHandler<KeyEvent> {
             this.view.keyPress(1);
             this.update(1);
         } else if (code == KeyCode.DIGIT2) {
-            System.out.print("what2");
             if (timeline != null)
             timeline.stop();
 
@@ -102,31 +96,50 @@ public class Controller implements EventHandler<KeyEvent> {
             this.model.startNewSimulation(2);
             this.view.keyPress(2);
             this.update(2);
+        } else if (code == KeyCode.P) {
+            if (timeline != null) {
+                timeline.pause();
+            }
+            else {
+                this.startTimer(1);
+                this.model.startNewSimulation(1);
+                this.view.keyPress(1);
+                this.update(1);
+            }
         } else if (code == KeyCode.R) {
-            System.out.println("reset");
             if (timeline != null)
-            timeline.stop();
+                timeline.stop();
             this.startTimer(model.nodes);
             this.model.startNewSimulation(model.nodes);
             this.view.keyPress(model.nodes);
-
             this.update(model.nodes);
-        } /*else if (code == KeyCode.G) {
-            if (this.model.getviewtype()) {
-                this.model.setviewtype(false);
+
+        } else if (code == KeyCode.C) {
+            if(model.getPendulumColor().equals("black")) {
+                model.setPendulumColor("white");
             }
-        } else if (code == KeyCode.S) {
-            if (!(this.model.getviewtype())) {
-                this.model.setviewtype(true);
+            else if(model.getPendulumColor().equals("white"))
+                model.setPendulumColor("gold");
+            else
+                model.setPendulumColor("black");
+            if(timeline!=null) {
+                timeline.stop();
             }
-        } */else {
+           // view=new View();
+            this.startTimer(model.nodes);
+            this.model.startNewSimulation(model.nodes);
+
+
+            //this.startTimer(model.nodes);
+            //this.model.startNewSimulation(model.nodes);
+
+            this.view.keyPress(model.nodes);
+            this.update(model.nodes);
+        } else {
             keyRecognized = false;
         }
 
         if (keyRecognized) {
-            System.out.println("hey");
-
-           // this.update();
             keyEvent.consume();
         }
     }
