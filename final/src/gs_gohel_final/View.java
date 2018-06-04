@@ -1,5 +1,6 @@
-package gs_gohel_final;
+package edu.carleton.ganjam;
 
+import javafx.fxml.FXML;
 import javafx.scene.Group;
 
 import java.awt.*;
@@ -11,6 +12,7 @@ public class View extends JPanel {
 
     //The number of nodes that defines the size of the pendulum system
     private int N;
+    @FXML private int summin;
     private boolean viewtype;
     private int totaltime;
     private int pendulumLength;

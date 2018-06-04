@@ -6,19 +6,19 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+
 public class Controller implements EventHandler<KeyEvent> {
-    @FXML
-    private Label timeLabel;
-    @FXML
-    private Label messageLabel;
-    @FXML
-    private View View;
+    @FXML private Label timeLabel;
+    @FXML private Label messageLabel;
+    @FXML private View View;
     private Model Model;
 
     /*
      * @constructor - Empty.
      */
     public Controller() {
+        timeLabel=null;
+        messageLabel=null;
     }
 
     /*
@@ -36,12 +36,13 @@ public class Controller implements EventHandler<KeyEvent> {
      */
     public void update() {
         this.View.update(this.Model);
+
         //Display total time of simulation
-        this.timeLabel.setText("Time: "+ (String.valueOf(this.Model.time)));
-        if(this.Model.getviewtype()==true)
-            this.messageLabel.setText("Simulation of the pendulum in space");
+        this.timeLabel = new Label(String.valueOf(this.Model.time));
+        if(this.Model.getviewtype())
+            this.messageLabel = new Label("Simulation of the pendulum in space");
         else
-            this.messageLabel.setText("Kinetic Energy of Pendulum");
+            this.messageLabel = new Label("Kinetic Energy of Pendulum");
     }
 
     /*
@@ -62,6 +63,9 @@ public class Controller implements EventHandler<KeyEvent> {
             this.Model.startNewSimulation(1);
         } else if (code == KeyCode.DIGIT2) {
             this.Model.startNewSimulation(2);
+        } else if (code == KeyCode.R) {
+            //Default 1 for now
+            this.Model.startNewSimulation(1);
         } else if (code == KeyCode.G) {
             if (this.Model.getviewtype()) {
                 this.Model.setviewtype(false);

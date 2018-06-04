@@ -5,7 +5,7 @@
 
  */
 
-package gs_gohel_final;
+package edu.carleton.ganjam;
 
 import java.awt.*;
 import java.lang.Math;
@@ -52,6 +52,7 @@ public class Model {
         theta = 90;
         gravityAcceleration = -9.81;
         dt = 0.1;
+        time=0;
     }
 
     /*  Get method for viewtype

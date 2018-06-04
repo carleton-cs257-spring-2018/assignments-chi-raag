@@ -3,25 +3,49 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<GridPane fx:controller="gs_gohel_final.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+<!--
+<GridPane fx:controller="edu.carleton.ganjam.Controller"
+         xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+   <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
 
-    <Text text="Welcome"
-          GridPane.columnIndex="0" GridPane.rowIndex="0"
-          GridPane.columnSpan="2"/>
+   <Text text="Welcome to our simulation!"
+         GridPane.columnIndex="0" GridPane.rowIndex="0"
+         GridPane.columnSpan="2"/>
 
-    <Label text="User Name:"
-           GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+   <Label text="User Name:"
+          GridPane.columnIndex="0" GridPane.rowIndex="1"/>
 
-    <TextField
-            GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+   <TextField
+           GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-    <Label text="Password:"
-           GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+   <Label text="Password:"
+          GridPane.columnIndex="0" GridPane.rowIndex="2"/>
 
-    <PasswordField fx:id="passwordField"
-                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+   <PasswordField fx:id="passwordField"
+                  GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
 
 </GridPane>
+   -->
 
+<BorderPane fx:controller="edu.carleton.ganjam.Controller" xmlns:fx="http://javafx.com/fxml">
+<!-- See https://apps.carleton.edu/creativeservices/identity/college_colors/ for official Carleton colors -->
+<top>
+    <BorderPane prefHeight="35" style="-fx-background-color: #0B5091; -fx-padding: 10px, 5px, 10px, 5px" >
+        <left><Label fx:id="timeLabel" style="-fx-font-size: 150%; -fx-text-fill: white" /></left>
+        <right><Label fx:id="messageLabel" style="-fx-font-size: 150%; -fx-text-fill: white"/></right>
+    </BorderPane>
+</top>
+
+<center>
+    <!-- FIX ME -->
+    <edu.carleton.ganjam.View fx:id="daleksView" rowCount="30" columnCount="40" />
+</center>
+
+<bottom>
+    <HBox prefHeight="35" style="-fx-padding: 10px, 5px, 10px, 5px; -fx-background-color: #F3B61D">
+        <Label style="-fx-font-size: 140%; -fx-text-fill: white"
+               text="One node: 1 / Two nodes: 2 / Simulation: S / Graph of KE: G / Reset: R" />
+    </HBox>
+</bottom>
+</BorderPane>
