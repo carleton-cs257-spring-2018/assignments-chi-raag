@@ -106,7 +106,7 @@ public class Model {
      *   @param nodes: number of nodes in pendulum
      */
 
-    public void setFormulasSim(int nodes) {
+    public void updateSim(int nodes) {
         if (nodes == 1) {
             angaccel = -9.81 / this.l1 * Math.sin(theta);
             angVelocity += angaccel * dt;
@@ -149,8 +149,8 @@ public class Model {
     /*  Defines the KE equations to be used based in the number of nodes in pendulum
      *   @param nodes: number of nodes in pendulum
      */
-    public void setFormulasGraph(int nodes) {
-        this.setFormulasSim(nodes);
+    public void updateGraph(int nodes) {
+        this.updateSim(nodes);
         double xVelocity = this.l1 * Math.cos(this.theta) * this.angVelocity;
         double yVelocity = -this.l1 * Math.sin(this.theta) * this.angVelocity;
         if (nodes == 1) {
