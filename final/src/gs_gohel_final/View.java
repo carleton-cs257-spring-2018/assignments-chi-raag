@@ -32,6 +32,11 @@ public class View extends Pane {
     private Color backgroundColor;
     private double theta;
     private Model model = new Model();
+    Circle circle1;
+    Circle circle2;
+    Line line;
+    double x;
+    double y;
 
 
     /* A set constructor for the size of the pendulum system.
@@ -43,13 +48,13 @@ public class View extends Pane {
      * @constructor
      */
     public View() {
-        Line line = new Line(150, 100, 250, 100);
+        line = new Line(150, 100, 250, 100);
         line.setStrokeWidth(3);
 
-        Circle circle1 = new Circle(550, 100, 14);
+        circle1 = new Circle(550, 100, 14);
 
         // Create another circle
-        Circle circle2 = new Circle(250, 100, 5);
+        circle2 = new Circle(250, 100, 5);
 
         // Binding the line and the circle1 together, so they move synchronized
         line.startXProperty().bind(circle1.centerXProperty().add(circle1.translateXProperty()));
@@ -57,26 +62,22 @@ public class View extends Pane {
 
         // Add circles and line to the pane
         getChildren().addAll(line, circle1, circle2);
-        Arc path = new Arc(250,100,200,200,200,140);
-        path.setType(ArcType.OPEN);
+        moveCircle();
+    }
 
-        // Create a path transition and set specifications
-        PathTransition pt = new PathTransition();
-        pt.setRate(.1);
-        pt.setPath(path);
-        pt.setNode(circle1);
-        pt.setOrientation(
-                PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-        pt.setCycleCount(Timeline.INDEFINITE);
-        pt.setAutoReverse(true);
-        pt.play();
-
+    public void moveCircle() {
+        circle1.setCenterX(x);
+        circle1.setCenterY(y);
     }
 
     /* Initializes a visual for the system depending on viewtype of model object
         @param model: the pendulum object
      */
-    public void initialize() {
+    public void update(Model model) {
+        x = model.getxCoordinate();
+        y = model.getyCoordinate();
+        moveCircle();
+
 
     }
 

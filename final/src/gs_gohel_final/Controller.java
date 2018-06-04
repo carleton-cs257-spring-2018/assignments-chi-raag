@@ -43,18 +43,13 @@ public class Controller
         this.startTimer();
     }
 
-    public void updateViews() {
-        //model.update();
-        //view.update(this.model);
-    }
-
     private void startTimer() {
         this.timer = new java.util.Timer();
         TimerTask timerTask = new TimerTask() {
             public void run() {
                 Platform.runLater(new Runnable() {
                     public void run() {
-                        updateViews();
+                        update();
                     }
                 });
             }
@@ -68,7 +63,8 @@ public class Controller
      Allows the user to see the time at end of simulation.
      */
     public void update() {
-        //this.View.update(this.Model);
+        model.updateSim();
+        this.View.update(this.model);
 
         //Display total time of simulation
         //this.timeLabel = new Label(String.valueOf(this.Model.time));
