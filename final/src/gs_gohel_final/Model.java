@@ -5,7 +5,7 @@
 
  */
 
-package gs_gohel_final;
+package edu.carleton.ganjam;
 
 import java.awt.*;
 import java.lang.Math;
@@ -53,7 +53,7 @@ public class Model {
         nodeRadius = 1;
         backgroundColor = Color.CYAN;
         theta = Math.toRadians(90);
-        gravityAcceleration = -9.81;
+        gravityAcceleration = 9.81;
         dt = 0.1;
         time=0;
     }
@@ -109,7 +109,7 @@ public class Model {
 
     public void updateSim(int nodes) {
         if (nodes == 1) {
-            angaccel = gravityAcceleration / this.l1 * Math.sin(theta);
+            angaccel = -gravityAcceleration / this.l1 * Math.sin(theta);
             angVelocity += angaccel * dt;
             theta += angVelocity * dt;
             m2 = l2  = 0;

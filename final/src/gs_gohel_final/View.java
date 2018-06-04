@@ -1,4 +1,4 @@
-package gs_gohel_final;
+package edu.carleton.ganjam;
 
 
 import javafx.fxml.FXML;
@@ -24,7 +24,6 @@ public class View extends Pane {
     private double theta;
     @FXML Circle circle1;
     Circle circle2;
-    Circle circle3;
     Line line;
     Line line2;
     double x;
