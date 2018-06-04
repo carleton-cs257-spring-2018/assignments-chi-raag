@@ -1,4 +1,4 @@
-package edu.carleton.ganjam;
+package gs_gohel_final;
 
 
 import javafx.fxml.FXML;
@@ -63,15 +63,6 @@ public class View extends Pane {
         line2.startYProperty().bind(circle3.centerYProperty().add(circle3.translateYProperty()));
         line2.endXProperty().bind(circle1.centerXProperty().add(circle1.translateXProperty()));
         line2.endYProperty().bind(circle1.centerYProperty().add(circle1.translateYProperty()));
-
-        if (model.nodes == 1) {
-            getChildren().addAll(line, circle1, circle2);
-        }
-
-        if (model.nodes == 2) {
-            getChildren().addAll(line, line2, circle1, circle2, circle3);
-        }
-
     }
 
     public void moveCircle() {
@@ -79,6 +70,28 @@ public class View extends Pane {
         circle1.setTranslateY(y);
         circle3.setTranslateY(y2);
         circle3.setTranslateX(x2);
+    }
+
+    public void keyPress(int nodes) {
+        if (nodes == 1) {
+            System.out.print("hi");
+            if (getChildren() == null) {
+                getChildren().addAll(line, circle1, circle2);
+            } else {
+                int i = getChildren().size();
+                getChildren().remove(0, i-1);
+                getChildren().addAll(line, circle1, circle2);
+            }
+        }
+        else if (nodes == 2) {
+            if (getChildren() == null) {
+                getChildren().addAll(line, line2, circle1, circle2, circle3);
+            } else {
+                int i = getChildren().size();
+                getChildren().remove(0, i-1);
+                getChildren().addAll(line, line2, circle1, circle2, circle3);
+            }
+        }
     }
 
     /* Initializes a visual for the system depending on viewtype of model object

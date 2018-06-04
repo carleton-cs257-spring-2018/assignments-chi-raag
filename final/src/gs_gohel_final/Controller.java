@@ -1,4 +1,4 @@
-package edu.carleton.ganjam;
+package gs_gohel_final;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -74,7 +74,7 @@ public class Controller implements EventHandler<KeyEvent>{
      User hits a specific key to stop current simulation, then inputs new size or demand for new view.
      Model updated appropriately.
      */
-
+    @Override
     public void handle(KeyEvent keyEvent) {
         //Uses Model.setviewtype() to manipulate viewtype depending on user input
 
@@ -82,13 +82,14 @@ public class Controller implements EventHandler<KeyEvent>{
         boolean keyRecognized = true;
         KeyCode code = keyEvent.getCode();
         if (code == KeyCode.DIGIT1) {
+            System.out.print("what");
             this.model.startNewSimulation(1);
             model.updateSim(1);
-            this.view.update(this.model);
+            this.view.keyPress(1);
         } else if (code == KeyCode.DIGIT2) {
             this.model.startNewSimulation(2);
             model.updateSim(2);
-            this.view.update(this.model);
+            this.view.keyPress(2);
         } else if (code == KeyCode.R) {
             //Default 1 for now
             this.model.startNewSimulation(1);
@@ -107,6 +108,7 @@ public class Controller implements EventHandler<KeyEvent>{
         }
 
         if (keyRecognized) {
+            System.out.println("hey");
            // this.update();
             keyEvent.consume();
         }
