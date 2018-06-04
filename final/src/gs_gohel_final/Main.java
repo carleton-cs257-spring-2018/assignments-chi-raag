@@ -18,11 +18,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("gs_gohel_final.fxml"));
         Parent root = loader.load();
-        Scene scene = new Scene(root, 300, 275);
+        Scene scene = new Scene(root, 600, 600);
         primaryStage.setTitle("The Pendulum");
         primaryStage.setScene(scene);
         Controller controller = loader.getController();
-        root.setOnKeyPressed(controller);
+        //root.setOnKeyPressed(controller);
         controller.update();
         primaryStage.show();
         root.requestFocus();

@@ -13,7 +13,7 @@
     </top>
 
     <center>
-        <View fx:id="view"/>
+        <View fx:id="daleksView"/>
     </center>
 
     <bottom>
@@ -23,4 +23,3 @@
         </HBox>
     </bottom>
 </BorderPane>
-

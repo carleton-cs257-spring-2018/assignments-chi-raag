@@ -55,6 +55,7 @@ public class Model extends JFXPanel {
         theta = 90;
         gravityAcceleration = -9.81;
         dt = 0.1;
+        time=0;
     }
 
     /*  Get method for viewtype
@@ -198,19 +199,6 @@ public class Model extends JFXPanel {
 
     public double getTheta() {
         return this.theta;
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, 100, 100);
-        g.setColor(Color.blue);
-        int anchorX = JApplet.WIDTH / 2, anchorY = JApplet.HEIGHT / 4;
-        int ballX = anchorX + (int) (Math.sin(theta) * pendulumLength);
-        int ballY = anchorY + (int) (Math.cos(theta) * pendulumLength);
-        g.drawLine(anchorX, anchorY, ballX, ballY);
-        g.fillOval(anchorX - 3, anchorY - 4, 7, 7);
-        g.fillOval(ballX - 7, ballY - 7, 14, 14);
     }
 }
 
