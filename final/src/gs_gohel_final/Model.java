@@ -5,12 +5,15 @@
 
  */
 
-package edu.carleton.ganjam;
+package gs_gohel_final;
 
+import javafx.embed.swing.JFXPanel;
+
+import javax.swing.*;
 import java.awt.*;
 import java.lang.Math;
 
-public class Model {
+public class Model extends JFXPanel {
 
     private boolean viewtype;
     private int totaltime;

@@ -1,14 +1,25 @@
-package edu.carleton.ganjam;
+package gs_gohel_final;
+
+
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
+import javafx.embed.swing.JFXPanel;
 
 import javafx.fxml.FXML;
+
 import javafx.scene.Group;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 
 import java.awt.*;
 import javax.swing.*;
 import java.awt.Graphics;
 import java.awt.Component;
 
-public class View extends JPanel {
+public class View extends Pane {
 
     //The number of nodes that defines the size of the pendulum system
     private int N;
@@ -20,7 +31,7 @@ public class View extends JPanel {
     private Color[] nodeColors;
     private Color backgroundColor;
     private double theta;
-    private Graphics g = getGraphics();
+    private Model model = new Model();
 
 
     /* A set constructor for the size of the pendulum system.
@@ -31,89 +42,46 @@ public class View extends JPanel {
     /**
      * @constructor
      */
-    public View(int N) {
-        this.N = N;
-        //initialize(boolean viewtype);
-    }
+    public View() {
+        Line line = new Line(150, 100, 250, 100);
+        line.setStrokeWidth(3);
 
-    /* A get method for the size of the pendulum system.
-     */
-    public int getN() {
-        return this.N;
+        Circle circle1 = new Circle(550, 100, 14);
+
+        // Create another circle
+        Circle circle2 = new Circle(250, 100, 5);
+
+        // Binding the line and the circle1 together, so they move synchronized
+        line.startXProperty().bind(circle1.centerXProperty().add(circle1.translateXProperty()));
+        line.startYProperty().bind(circle1.centerYProperty().add(circle1.translateYProperty()));
+
+        // Add circles and line to the pane
+        getChildren().addAll(line, circle1, circle2);
+        Arc path = new Arc(250,100,200,200,200,140);
+        path.setType(ArcType.OPEN);
+
+        // Create a path transition and set specifications
+        PathTransition pt = new PathTransition();
+        pt.setRate(.1);
+        pt.setPath(path);
+        pt.setNode(circle1);
+        pt.setOrientation(
+                PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        pt.setCycleCount(Timeline.INDEFINITE);
+        pt.setAutoReverse(true);
+        pt.play();
+
     }
 
     /* Initializes a visual for the system depending on viewtype of model object
         @param model: the pendulum object
      */
-    public void initialize(Model model) {
-        if (model.getviewtype())
-            this.initializeView();
-        else
-            this.initializeGraph();
-    }
-
-    /* Initializes the graphic of the pendulum system.
-     * Graphic starts from the horizontal position.
-     * Default view of the system
-     */
-    @Override
-    public void paint(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, 100, 100);
-        g.setColor(Color.blue);
-        int anchorX = JApplet.WIDTH / 2, anchorY = JApplet.HEIGHT / 4;
-        int ballX = anchorX + (int) (Math.sin(theta) * pendulumLength);
-        int ballY = anchorY + (int) (Math.cos(theta) * pendulumLength);
-        g.drawLine(anchorX, anchorY, ballX, ballY);
-        g.fillOval(anchorX - 3, anchorY - 4, 7, 7);
-        g.fillOval(ballX - 7, ballY - 7, 14, 14);
-    }
-
-    public void updateValues(Model model) {
-        viewtype = model.getviewtype();
-        pendulumLength = model.getPendulumLength();
-        nodeRadius = model.getNodeRadius();
-        theta = model.getTheta();
-        backgroundColor = model.getBackgroundColor();
-        repaint();
-    }
-
-    public void update(Model model) {
-        updateValues(model);
-    }
-
-    public void initializeView() {
-
+    public void initialize() {
 
     }
 
-    /* Initializes the data graph of the Kinetic energy of the pendulum system.
-     * Graphic starts from the horizontal position.
-     * Includes a timer to show the evolution of the system quantitatively.
-     */
-    public void initializeGraph() {
 
-    }
 
-    /* Updates the graph view with information from model.
-     * Will show different models as user inputs different demands.
-     *     @param model: the pendulum object
-     */
-    public void updateGraph(Model model) {
 
-    }
 
-    /* Updates the pendulum visual with information from model.
-     * Will show different system as user inputs different demands.
-     *     @param model: the pendulum object
-     */
-    public void updateView(Model model) {
-
-    }
-
-    /* Implements a timer for the simulation/graph
-     */
-    public void timescale() {
-
-    }
 }

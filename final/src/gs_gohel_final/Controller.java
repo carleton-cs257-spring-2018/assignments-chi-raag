@@ -1,17 +1,26 @@
-package edu.carleton.ganjam;
+package gs_gohel_final;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class Controller implements EventHandler<KeyEvent> {
+
+public class Controller
+        //implements EventHandler<KeyEvent>
+        {
     @FXML private Label timeLabel;
     @FXML private Label messageLabel;
     @FXML private View View;
-    private Model Model;
+    private Model model;
+    @FXML private View view;
+    private final int FRAMES_PER_SECOND = 20;
+    Timer timer  = new Timer();
 
     /*
      * @constructor - Empty.
@@ -19,15 +28,39 @@ public class Controller implements EventHandler<KeyEvent> {
     public Controller() {
         timeLabel=null;
         messageLabel=null;
+        model = new Model();
+        this.view = new View();
+        //view.update(model);
     }
 
     /*
      Initializes a pendulum model. Default is a double pendulum (?)
      */
     public void initialize() {
-        this.Model = new Model();
-        this.View = new View(1);
-        View.updateValues(Model);
+        //this.Model = new Model();
+        this.View = new View();
+        //View.updateValues(Model);
+        this.startTimer();
+    }
+
+    public void updateViews() {
+        //model.update();
+        //view.update(this.model);
+    }
+
+    private void startTimer() {
+        this.timer = new java.util.Timer();
+        TimerTask timerTask = new TimerTask() {
+            public void run() {
+                Platform.runLater(new Runnable() {
+                    public void run() {
+                        updateViews();
+                    }
+                });
+            }
+        };
+        long frameTimeInMilliseconds = (long)(1000.0 / FRAMES_PER_SECOND);
+        this.timer.schedule(timerTask, 0, frameTimeInMilliseconds);
     }
 
     /*
@@ -35,14 +68,14 @@ public class Controller implements EventHandler<KeyEvent> {
      Allows the user to see the time at end of simulation.
      */
     public void update() {
-        this.View.update(this.Model);
+        //this.View.update(this.Model);
 
         //Display total time of simulation
-        this.timeLabel = new Label(String.valueOf(this.Model.time));
-        if(this.Model.getviewtype())
-            this.messageLabel = new Label("Simulation of the pendulum in space");
-        else
-            this.messageLabel = new Label("Kinetic Energy of Pendulum");
+        //this.timeLabel = new Label(String.valueOf(this.Model.time));
+        //if(this.Model.getviewtype())
+          //  this.messageLabel = new Label("Simulation of the pendulum in space");
+       // else
+           // this.messageLabel = new Label("Kinetic Energy of Pendulum");
     }
 
     /*
@@ -52,8 +85,8 @@ public class Controller implements EventHandler<KeyEvent> {
      User hits a specific key to stop current simulation, then inputs new size or demand for new view.
      Model updated appropriately.
      */
-    @Override
-    public void handle(KeyEvent keyEvent) {
+   // @Override
+  /*  public void handle(KeyEvent keyEvent) {
         //Uses Model.setviewtype() to manipulate viewtype depending on user input
 
         //boolean pressRecognized = true;
@@ -82,5 +115,5 @@ public class Controller implements EventHandler<KeyEvent> {
             this.update();
             keyEvent.consume();
         }
-    }
+    }*/
 }
