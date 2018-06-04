@@ -16,9 +16,8 @@ public class Controller
         {
     @FXML private Label timeLabel;
     @FXML private Label messageLabel;
-    @FXML private View View;
-    private Model model;
     @FXML private View view;
+    private Model model;
     private final int FRAMES_PER_SECOND = 20;
     Timer timer  = new Timer();
 
@@ -30,6 +29,7 @@ public class Controller
         messageLabel=null;
         model = new Model();
         this.view = new View();
+        view.update(model);
         //view.update(model);
     }
 
@@ -38,7 +38,6 @@ public class Controller
      */
     public void initialize() {
         //this.Model = new Model();
-        this.View = new View();
         //View.updateValues(Model);
         this.startTimer();
     }
@@ -63,8 +62,8 @@ public class Controller
      Allows the user to see the time at end of simulation.
      */
     public void update() {
-        model.updateSim();
-        this.View.update(this.model);
+        model.updateSim(1);
+        this.view.update(this.model);
 
         //Display total time of simulation
         //this.timeLabel = new Label(String.valueOf(this.Model.time));

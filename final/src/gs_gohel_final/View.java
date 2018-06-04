@@ -31,7 +31,6 @@ public class View extends Pane {
     private Color[] nodeColors;
     private Color backgroundColor;
     private double theta;
-    private Model model = new Model();
     Circle circle1;
     Circle circle2;
     Line line;
@@ -57,8 +56,8 @@ public class View extends Pane {
         circle2 = new Circle(250, 100, 5);
 
         // Binding the line and the circle1 together, so they move synchronized
-        line.startXProperty().bind(circle1.centerXProperty().add(circle1.translateXProperty()));
-        line.startYProperty().bind(circle1.centerYProperty().add(circle1.translateYProperty()));
+        //line.startXProperty().bind(circle1.centerXProperty().add(circle1.translateXProperty()));
+        //line.startYProperty().bind(circle1.centerYProperty().add(circle1.translateYProperty()));
 
         // Add circles and line to the pane
         getChildren().addAll(line, circle1, circle2);
@@ -74,8 +73,9 @@ public class View extends Pane {
         @param model: the pendulum object
      */
     public void update(Model model) {
-        x = model.getxCoordinate();
-        y = model.getyCoordinate();
+        x = x + model.getxCoordinate();
+        System.out.println(circle1.getCenterX());
+        y = y + model.getyCoordinate();
         moveCircle();
 
 
