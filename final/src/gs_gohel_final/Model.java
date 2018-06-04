@@ -87,10 +87,11 @@ public class Model {
         this.KE_sys = 0;
 
         if (nodes == 2) {
+            theta2 = Math.toRadians(90);
             this.angaccel2 = -gravityAcceleration / (this.l1 + this.l2);
             this.angVelocity2 = 0;
-            this.xCoordinate = l1 + l2;
-            this.yCoordinate = 0;
+            this.xCoordinate2 = l1 + l2;
+            this.yCoordinate2 = 0;
         }
     }
 
@@ -125,8 +126,8 @@ public class Model {
         xCoordinate=l1*Math.sin(theta);
         yCoordinate=l1*Math.cos(theta);
         if (nodes==2) {
-            xCoordinate2=xCoordinate+l2*Math.sin(theta);
-            yCoordinate2=yCoordinate+l2*Math.cos(theta);
+            xCoordinate2=xCoordinate+l2*Math.sin(theta2);
+            yCoordinate2=yCoordinate+l2*Math.cos(theta2);
         }
     }
 
