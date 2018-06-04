@@ -3,6 +3,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import gs_gohel_final.View?>
 <BorderPane fx:controller="gs_gohel_final.Controller" xmlns:fx="http://javafx.com/fxml">
     <!-- See https://apps.carleton.edu/creativeservices/identity/college_colors/ for official Carleton colors -->
     <top>

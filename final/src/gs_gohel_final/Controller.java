@@ -1,4 +1,4 @@
-package edu.carleton.ganjam;
+package gs_gohel_final;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -55,7 +55,7 @@ public class Controller {
     Updates the pendulum model with the user demands - either works with the simulation visual or the KE graph.
      Allows the user to see the time at end of simulation.
      */
-    public void update() {
+    public void update(int) {
         model.updateSim(1);
         this.view.update(this.model);
 

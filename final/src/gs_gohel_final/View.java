@@ -1,4 +1,4 @@
-package edu.carleton.ganjam;
+package gs_gohel_final;
 
 
 import javafx.fxml.FXML;
@@ -24,6 +24,7 @@ public class View extends Pane {
     private double theta;
     @FXML Circle circle1;
     Circle circle2;
+    Circle circle3;
     Line line;
     double x;
     double y;
@@ -53,6 +54,8 @@ public class View extends Pane {
 
         // Add circles and line to the pane
         getChildren().addAll(line, circle1, circle2);
+
+        circle3 = new Circle()
     }
 
     public void moveCircle() {
