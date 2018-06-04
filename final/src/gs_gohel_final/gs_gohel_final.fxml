@@ -13,7 +13,7 @@
     </top>
 
     <center>
-        <View fx:id="daleksView"></View>
+        <View fx:id="View"></View>
     </center>
 
     <bottom>

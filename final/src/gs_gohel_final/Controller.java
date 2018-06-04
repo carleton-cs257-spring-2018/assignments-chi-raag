@@ -16,7 +16,7 @@ public class Controller
         {
     @FXML private Label timeLabel;
     @FXML private Label messageLabel;
-    @FXML private View view;
+    @FXML private View view = new View();
     private Model model;
     private final int FRAMES_PER_SECOND = 20;
     Timer timer  = new Timer();
@@ -29,16 +29,12 @@ public class Controller
         messageLabel=null;
         model = new Model();
         this.view = new View();
-        view.update(model);
-        //view.update(model);
     }
 
     /*
      Initializes a pendulum model. Default is a double pendulum (?)
      */
     public void initialize() {
-        //this.Model = new Model();
-        //View.updateValues(Model);
         this.startTimer();
     }
 
@@ -53,6 +49,7 @@ public class Controller
                 });
             }
         };
+
         long frameTimeInMilliseconds = (long)(1000.0 / FRAMES_PER_SECOND);
         this.timer.schedule(timerTask, 0, frameTimeInMilliseconds);
     }

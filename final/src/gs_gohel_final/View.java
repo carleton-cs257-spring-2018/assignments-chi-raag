@@ -1,23 +1,14 @@
 package gs_gohel_final;
 
 
-import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
-import javafx.embed.swing.JFXPanel;
-
 import javafx.fxml.FXML;
 
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Arc;
-import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
 import java.awt.*;
-import javax.swing.*;
-import java.awt.Graphics;
-import java.awt.Component;
 
 public class View extends Pane {
 
@@ -31,7 +22,7 @@ public class View extends Pane {
     private Color[] nodeColors;
     private Color backgroundColor;
     private double theta;
-    Circle circle1;
+    @FXML Circle circle1;
     Circle circle2;
     Line line;
     double x;
@@ -50,7 +41,7 @@ public class View extends Pane {
         line = new Line(150, 100, 250, 100);
         line.setStrokeWidth(3);
 
-        circle1 = new Circle(550, 100, 14);
+        circle1 = new Circle(400, 100, 14);
 
         // Create another circle
         circle2 = new Circle(250, 100, 5);
@@ -61,12 +52,11 @@ public class View extends Pane {
 
         // Add circles and line to the pane
         getChildren().addAll(line, circle1, circle2);
-        moveCircle();
     }
 
     public void moveCircle() {
-        circle1.setCenterX(x);
-        circle1.setCenterY(y);
+        circle1.setTranslateX(x);
+        circle1.setTranslateY(y);
     }
 
     /* Initializes a visual for the system depending on viewtype of model object
@@ -74,11 +64,8 @@ public class View extends Pane {
      */
     public void update(Model model) {
         x = x + model.getxCoordinate();
-        System.out.println(circle1.getCenterX());
         y = y + model.getyCoordinate();
         moveCircle();
-
-
     }
 
 

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d306caed-87e2-4cec-89e7-ccff71d7eec2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final/gs_gohel_final/gs_gohel_final.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final/gs_gohel_final/gs_gohel_final.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gs_gohel_final/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gs_gohel_final/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gs_gohel_final/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gs_gohel_final/View.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gs_gohel_final/gs_gohel_final.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gs_gohel_final/gs_gohel_final.fxml" afterDir="false" />
@@ -17,16 +18,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gs_gohel_final/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="30" column="31" lean-forward="true" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+            <state relative-caret-position="374">
+              <caret line="69" column="74" lean-forward="true" selection-start-line="69" selection-start-column="74" selection-end-line="69" selection-end-column="74" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#866#867#0" expanded="true" />
+                <element signature="e#900#901#0" expanded="true" />
                 <element signature="e#1245#1490#0" expanded="true" />
-                <element signature="e#1384#1385#0" expanded="true" />
-                <element signature="e#1445#1446#0" expanded="true" />
+                <element signature="e#1277#1278#0" expanded="true" />
+                <element signature="e#1333#1334#0" expanded="true" />
                 <element signature="e#1489#1490#0" expanded="true" />
               </folding>
             </state>
@@ -36,7 +39,7 @@
       <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gs_gohel_final/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-644">
+            <state relative-caret-position="-728">
               <caret line="57" column="10" lean-forward="true" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -70,8 +73,8 @@
       <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gs_gohel_final/View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="76" column="49" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
+            <state relative-caret-position="362">
+              <caret line="46" column="39" lean-forward="true" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,11 +82,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gs_gohel_final.fxml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gs_gohel_final.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gs_gohel_final/gs_gohel_final.fxml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="15" column="40" lean-forward="true" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+              <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -92,8 +95,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gs_gohel_final/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="255">
+              <caret line="26" column="28" lean-forward="true" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -107,11 +110,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/src/gs_gohel_final/Main.java" />
         <option value="$PROJECT_DIR$/src/gs_gohel_final/Model.java" />
-        <option value="$PROJECT_DIR$/src/gs_gohel_final/Controller.java" />
-        <option value="$PROJECT_DIR$/src/gs_gohel_final/View.java" />
         <option value="$PROJECT_DIR$/src/gs_gohel_final/gs_gohel_final.fxml" />
+        <option value="$PROJECT_DIR$/src/gs_gohel_final/Main.java" />
+        <option value="$PROJECT_DIR$/src/gs_gohel_final/View.java" />
+        <option value="$PROJECT_DIR$/src/gs_gohel_final/Controller.java" />
       </list>
     </option>
   </component>
@@ -209,12 +212,12 @@
       <workItem from="1527528977928" duration="1877000" />
       <workItem from="1527710575571" duration="8071000" />
       <workItem from="1527785122776" duration="6427000" />
-      <workItem from="1528065874530" duration="9433000" />
+      <workItem from="1528065874530" duration="11903000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29474000" />
+    <option name="totallyTimeSpent" value="31944000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -268,9 +271,11 @@
           <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#866#867#0" expanded="true" />
+            <element signature="e#900#901#0" expanded="true" />
             <element signature="e#1245#1490#0" expanded="true" />
-            <element signature="e#1384#1385#0" expanded="true" />
-            <element signature="e#1445#1446#0" expanded="true" />
+            <element signature="e#1277#1278#0" expanded="true" />
+            <element signature="e#1333#1334#0" expanded="true" />
             <element signature="e#1489#1490#0" expanded="true" />
           </folding>
         </state>
@@ -534,17 +539,25 @@
     <entry file="file://$PROJECT_DIR$/../../cs257_2018/DaleksMVC/src/edu/carleton/jondich/daleks/Controller.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/gs_gohel_final/gs_gohel_final.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/gs_gohel_final/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="255">
+          <caret line="26" column="28" lean-forward="true" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gs_gohel_final/View.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="76" column="49" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
+        <state relative-caret-position="362">
+          <caret line="46" column="39" lean-forward="true" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -553,7 +566,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gs_gohel_final/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-644">
+        <state relative-caret-position="-728">
           <caret line="57" column="10" lean-forward="true" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -585,25 +598,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gs_gohel_final/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="30" column="31" lean-forward="true" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+        <state relative-caret-position="374">
+          <caret line="69" column="74" lean-forward="true" selection-start-line="69" selection-start-column="74" selection-end-line="69" selection-end-column="74" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#866#867#0" expanded="true" />
+            <element signature="e#900#901#0" expanded="true" />
             <element signature="e#1245#1490#0" expanded="true" />
-            <element signature="e#1384#1385#0" expanded="true" />
-            <element signature="e#1445#1446#0" expanded="true" />
+            <element signature="e#1277#1278#0" expanded="true" />
+            <element signature="e#1333#1334#0" expanded="true" />
             <element signature="e#1489#1490#0" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gs_gohel_final/gs_gohel_final.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="40" lean-forward="true" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
 </project>
