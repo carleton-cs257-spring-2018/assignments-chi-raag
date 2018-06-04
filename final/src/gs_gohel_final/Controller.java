@@ -75,26 +75,26 @@ public class Controller {
      Model updated appropriately.
      */
     // @Override
-  /*  public void handle(KeyEvent keyEvent) {
+   public void handle(KeyEvent keyEvent) {
         //Uses Model.setviewtype() to manipulate viewtype depending on user input
 
         //boolean pressRecognized = true;
         boolean keyRecognized = true;
         KeyCode code = keyEvent.getCode();
         if (code == KeyCode.DIGIT1) {
-            this.Model.startNewSimulation(1);
+            this.model.startNewSimulation(1);
         } else if (code == KeyCode.DIGIT2) {
-            this.Model.startNewSimulation(2);
+            this.model.startNewSimulation(2);
         } else if (code == KeyCode.R) {
             //Default 1 for now
-            this.Model.startNewSimulation(1);
+            this.model.startNewSimulation(1);
         } else if (code == KeyCode.G) {
-            if (this.Model.getviewtype()) {
-                this.Model.setviewtype(false);
+            if (this.model.getviewtype()) {
+                this.model.setviewtype(false);
             }
         } else if (code == KeyCode.S) {
-            if (!(this.Model.getviewtype())) {
-                this.Model.setviewtype(true);
+            if (!(this.model.getviewtype())) {
+                this.model.setviewtype(true);
             }
         } else {
             keyRecognized = false;
@@ -104,5 +104,5 @@ public class Controller {
             this.update();
             keyEvent.consume();
         }
-    }*/
+    }
 }

@@ -25,6 +25,7 @@ public class Model {
     private double gravityAcceleration;
     private double dt;
     public double time;
+    public int nodes;
 
     private int m1, m2;
     private int l1, l2;
@@ -56,6 +57,7 @@ public class Model {
         gravityAcceleration = 9.81;
         dt = 0.1;
         time=0;
+        nodes=1;
     }
 
     /*  Get method for viewtype
@@ -78,6 +80,7 @@ public class Model {
      *   @param nodes: number of nodes in pendulum
      */
     public void startNewSimulation(int nodes) {
+        this.nodes=nodes;
         this.theta = Math.toRadians(90);
         this.time = 0;
         this.angaccel = -gravityAcceleration / this.l1;
@@ -115,11 +118,25 @@ public class Model {
             m2 = l2  = 0;
 
         } else if (nodes == 2) {
-            angaccel = (-gravityAcceleration * (2 * m1 + m2) * Math.sin(theta) - m2 * gravityAcceleration * Math.sin(theta - 2 * theta2) - 2 * Math.sin(theta - theta2) * m2 * (l2 * angVelocity2 * 2 + l1 * Math.cos(theta - theta2) * angVelocity * 2)) / (l1 * (2 * m1 + m2 - m2 * Math.cos(2 * theta - 2 * theta2)));
+            angaccel = (-gravityAcceleration * (2 * m1 + m2) * Math.sin(theta) - m2 * gravityAcceleration * Math.sin(theta - 2 * theta2) - 2 * Math.sin(theta - theta2) * m2 * (l2 * angVelocity2 * angVelocity2 + l1 * Math.cos(theta - theta2) * angVelocity * angVelocity)) / (l1 * (2 * m1 + m2 - m2 * Math.cos(2 * theta - 2 * theta2)));
+           /* System.out.print("Denom: ");
+            System.out.println((l1 * (2 * m1 + m2 - m2 * Math.cos(2 * theta - 2 * theta2))));
+            System.out.print("Num: ");
+            System.out.println((-gravityAcceleration * (2 * m1 + m2) * Math.sin(theta) - m2 * gravityAcceleration * Math.sin(theta - 2 * theta2) - 2 * Math.sin(theta - theta2) * m2 * (l2 * angVelocity2 * angVelocity + l1 * Math.cos(theta - theta2) * angVelocity * angVelocity)));
+            */
+
             angVelocity += angaccel * dt;
             theta += angVelocity * dt;
+            /*
+            System.out.print(angaccel+" ");
+            System.out.print(angVelocity+" ");
+            System.out.print(theta+" ");
+            System.out.println();
+            */
 
-            angaccel2 = (2 * Math.sin(theta - theta2) * ((m1 + m2) * l1 * angVelocity * 2 + gravityAcceleration * (m1 + m2) * Math.cos(theta) + l2 * m2 * Math.cos(theta - theta2) * angVelocity2 * 2)) / (l2 * (2 * m1 + m2 - m2 * Math.cos(2 * theta - 2 * theta2)));
+            angaccel2 = (2 * Math.sin(theta - theta2) * ((m1 + m2) * l1 * angVelocity * angVelocity + gravityAcceleration * (m1 + m2) * Math.cos(theta) + l2 * m2 * Math.cos(theta - theta2) * angVelocity2 * angVelocity2)) / (l2 * (2 * m1 + m2 - m2 * Math.cos(2 * theta - 2 * theta2)));
+            //System.out.println("Denom");
+
             angVelocity2 += angaccel2 * dt;
             theta2 += angVelocity2 * dt;
         }
