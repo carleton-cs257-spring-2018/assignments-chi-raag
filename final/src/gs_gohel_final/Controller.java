@@ -1,25 +1,30 @@
 package gs_gohel_final;
 
+import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.event.EventHandler;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Duration;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class Controller
-        //implements EventHandler<KeyEvent>
-        {
+public class Controller {
+
     @FXML private Label timeLabel;
     @FXML private Label messageLabel;
-    @FXML private View view = new View();
+    @FXML private View view;
     private Model model;
     private final int FRAMES_PER_SECOND = 20;
-    Timer timer  = new Timer();
 
     /*
      * @constructor - Empty.
@@ -28,7 +33,6 @@ public class Controller
         timeLabel=null;
         messageLabel=null;
         model = new Model();
-        this.view = new View();
     }
 
     /*
@@ -39,19 +43,12 @@ public class Controller
     }
 
     private void startTimer() {
-        this.timer = new java.util.Timer();
-        TimerTask timerTask = new TimerTask() {
-            public void run() {
-                Platform.runLater(new Runnable() {
-                    public void run() {
-                        update();
-                    }
-                });
-            }
-        };
 
-        long frameTimeInMilliseconds = (long)(1000.0 / FRAMES_PER_SECOND);
-        this.timer.schedule(timerTask, 0, frameTimeInMilliseconds);
+        EventHandler<ActionEvent> updater = event -> update();
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.0/FRAMES_PER_SECOND), updater));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
     }
 
     /*
@@ -65,9 +62,9 @@ public class Controller
         //Display total time of simulation
         //this.timeLabel = new Label(String.valueOf(this.Model.time));
         //if(this.Model.getviewtype())
-          //  this.messageLabel = new Label("Simulation of the pendulum in space");
-       // else
-           // this.messageLabel = new Label("Kinetic Energy of Pendulum");
+        //  this.messageLabel = new Label("Simulation of the pendulum in space");
+        // else
+        // this.messageLabel = new Label("Kinetic Energy of Pendulum");
     }
 
     /*
@@ -77,7 +74,7 @@ public class Controller
      User hits a specific key to stop current simulation, then inputs new size or demand for new view.
      Model updated appropriately.
      */
-   // @Override
+    // @Override
   /*  public void handle(KeyEvent keyEvent) {
         //Uses Model.setviewtype() to manipulate viewtype depending on user input
 

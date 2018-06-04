@@ -11,11 +11,9 @@
             <right><Label fx:id="messageLabel" style="-fx-font-size: 150%; -fx-text-fill: white"/></right>
         </BorderPane>
     </top>
-
     <center>
-        <View fx:id="View"></View>
+        <View fx:id="view"/>
     </center>
-
     <bottom>
         <HBox prefHeight="35" style="-fx-padding: 10px, 5px, 10px, 5px; -fx-background-color: #F3B61D">
             <Label style="-fx-font-size: 140%; -fx-text-fill: white"

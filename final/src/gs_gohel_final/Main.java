@@ -21,9 +21,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, 600, 600);
         primaryStage.setTitle("The Pendulum");
         primaryStage.setScene(scene);
-        Controller controller = loader.getController();
         //root.setOnKeyPressed(controller);
-        controller.update();
         primaryStage.show();
         root.requestFocus();
     }

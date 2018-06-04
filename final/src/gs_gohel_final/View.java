@@ -40,23 +40,23 @@ public class View extends Pane {
     public View() {
         line = new Line(150, 100, 250, 100);
         line.setStrokeWidth(3);
-
-        circle1 = new Circle(400, 100, 14);
+        Model model = new Model();
+        circle1 = new Circle(model.getxCoordinate(), model.getyCoordinate(), 14);
 
         // Create another circle
         circle2 = new Circle(250, 100, 5);
 
         // Binding the line and the circle1 together, so they move synchronized
-        //line.startXProperty().bind(circle1.centerXProperty().add(circle1.translateXProperty()));
-        //line.startYProperty().bind(circle1.centerYProperty().add(circle1.translateYProperty()));
+        line.startXProperty().bind(circle1.centerXProperty().add(circle1.translateXProperty()));
+        line.startYProperty().bind(circle1.centerYProperty().add(circle1.translateYProperty()));
 
         // Add circles and line to the pane
         getChildren().addAll(line, circle1, circle2);
     }
 
     public void moveCircle() {
-        circle1.setTranslateX(x);
-        circle1.setTranslateY(y);
+        circle1.setCenterY(x);
+        circle1.setCenterY(y);
     }
 
     /* Initializes a visual for the system depending on viewtype of model object
