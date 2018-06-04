@@ -20,8 +20,9 @@ public class Main extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root, 600, 600);
         primaryStage.setTitle("The Pendulum");
+        Controller controller = loader.getController();
+        root.setOnKeyPressed(controller);
         primaryStage.setScene(scene);
-        //root.setOnKeyPressed(controller);
         primaryStage.show();
         root.requestFocus();
     }

@@ -75,11 +75,12 @@ public class View extends Pane {
     public void keyPress(int nodes) {
         if (nodes == 1) {
             System.out.print("hi");
-            if (getChildren() == null) {
+            if (!getChildren().contains(circle2)) {
                 getChildren().addAll(line, circle1, circle2);
             } else {
+                System.out.println(getChildren().toString());
                 int i = getChildren().size();
-                getChildren().remove(0, i-1);
+                getChildren().remove(0, i);
                 getChildren().addAll(line, circle1, circle2);
             }
         }

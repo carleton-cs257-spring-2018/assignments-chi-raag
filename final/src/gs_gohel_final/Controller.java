@@ -18,7 +18,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class Controller implements EventHandler<KeyEvent>{
+public class Controller implements EventHandler<KeyEvent> {
 
     @FXML private Label timeLabel;
     @FXML private Label messageLabel;
@@ -56,7 +56,7 @@ public class Controller implements EventHandler<KeyEvent>{
      Allows the user to see the time at end of simulation.
      */
     public void update() {
-        model.updateSim(1);
+        model.updateSim(2);
         this.view.update(this.model);
 
         //Display total time of simulation
