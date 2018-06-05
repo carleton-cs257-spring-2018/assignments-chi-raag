@@ -1,4 +1,12 @@
 /*
+ * Pendulum JAVAFX project
+ * Authors: Chiraag Gohel and Sharan Ganjam Seshachallam
+ * CS 257, Spring 2018
+ * Main.java - a part of the Pendulum MVC project.
+
+ */
+
+/*
 Chiraag Gohel, Sharan GS
 CS 257, 18/SP
 Adapted from Jeff Ondich's Daleks project

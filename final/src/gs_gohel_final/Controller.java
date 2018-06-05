@@ -1,22 +1,21 @@
+/*
+ * Pendulum JAVAFX project
+ * Authors: Chiraag Gohel and Sharan Ganjam Seshachallam
+ * CS 257, Spring 2018
+ * Controller.java - a part of the Pendulum MVC project.
+
+ */
+
 package gs_gohel_final;
 
-import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.event.EventHandler;
-import javafx.scene.control.Control;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
-import javafx.animation.PauseTransition;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class Controller implements EventHandler<KeyEvent> {
