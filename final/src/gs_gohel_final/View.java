@@ -33,7 +33,7 @@ public class View extends Pane {
      * @constructor
      */
     public View() {
-        
+
         Model model = new Model();
 
         firstNode = new Circle(this.getMaxWidth() / 2, this.getMaxHeight() / 2, 14, Paint.valueOf(model.getPendulumColor()));
