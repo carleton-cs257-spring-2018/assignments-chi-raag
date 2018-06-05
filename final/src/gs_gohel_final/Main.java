@@ -26,8 +26,7 @@ public class Main extends Application {
         primaryStage.show();
         root.requestFocus();
     }
-
-
+    
     public static void main(String[] args) {
         launch(args);
     }
