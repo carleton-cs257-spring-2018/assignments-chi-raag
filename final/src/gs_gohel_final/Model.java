@@ -1,7 +1,8 @@
 /*
- * nPendulum JAVAFX project
+ * Pendulum JAVAFX project
  * Authors: Chiraag Gohel and Sharan Ganjam Seshachallam
  * CS 257, Spring 2018
+ * Model.java - a part of the Pendulum MVC project.
 
  */
 
@@ -225,4 +226,3 @@ public class Model {
         return this.yCoordinate2;
     }
 }
-

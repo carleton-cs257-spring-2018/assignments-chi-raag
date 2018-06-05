@@ -1,10 +1,14 @@
+/*
+ * Pendulum JAVAFX project
+ * Authors: Chiraag Gohel and Sharan Ganjam Seshachallam
+ * CS 257, Spring 2018
+ * View.java - a part of the Pendulum MVC project.
+
+ */
+
 package gs_gohel_final;
 
-
-import com.sun.istack.internal.NotNull;
 import javafx.fxml.FXML;
-
-import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -50,11 +54,11 @@ public class View extends Pane {
 
 
         // Create another circle
-        circle2 = new Circle(300, 200+model.getyCoordinate(), 5, javafx.scene.paint.Paint.valueOf(model.getPendulumColor()));
+        circle2 = new Circle(270, 200+model.getyCoordinate(), 5, javafx.scene.paint.Paint.valueOf(model.getPendulumColor()));
         //circle3 = new Circle(this.getMaxWidth()/1.5, this.getMaxHeight()/1.5, 14);
         circle3 = new Circle(circle1.getCenterX(), circle1.getCenterY(),14, javafx.scene.paint.Paint.valueOf(model.getPendulumColor()));
 
-        line = new Line(circle1.getCenterX(), circle1.getCenterY(), 300, circle2.getCenterY());
+        line = new Line(circle1.getCenterX(), circle1.getCenterY(), circle2.getCenterX(), circle2.getCenterY());
         line.setStrokeWidth(3);
         // Binding the line and the circle1 together, so they move synchronized
         line.startXProperty().bind(circle1.centerXProperty().add(circle1.translateXProperty()));
@@ -108,9 +112,9 @@ public class View extends Pane {
      */
     public void update(Model model) {
         //System.out.println(model.getxCoordinate2());
-        x = model.getxCoordinate() * this.getScene().getWidth() * .03 + this.getScene().getWidth()*0.5;
+        x = -30+model.getxCoordinate() * this.getScene().getWidth() * .03 + this.getScene().getWidth()*0.5;
         y = 200+ model.getyCoordinate() * this.getScene().getHeight() * .03;
-        x2 = model.getxCoordinate2() * this.getScene().getWidth() * .03 + this.getScene().getWidth()*0.5;
+        x2 = -30+model.getxCoordinate2() * this.getScene().getWidth() * .03 + this.getScene().getWidth()*0.5;
         y2 = 200+ model.getyCoordinate2() * this.getScene().getHeight() * .03;
         //System.out.println(x2);
         //System.out.println(y2);

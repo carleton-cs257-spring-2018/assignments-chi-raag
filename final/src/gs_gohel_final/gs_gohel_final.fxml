@@ -1,9 +1,18 @@
-<?import javafx.scene.layout.AnchorPane?><?import edu.carleton.ganjam.View?>
+<!--
+
+ * Pendulum JAVAFX project
+ * Authors: Chiraag Gohel and Sharan Ganjam Seshachallam
+ * CS 257, Spring 2018
+ * gs_gohel_final.fxml - a part of the Pendulum MVC project.
+
+-->
+
+<?import javafx.scene.layout.AnchorPane?><?import gs_gohel_final.View?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<BorderPane fx:controller="edu.carleton.ganjam.Controller" xmlns:fx="http://javafx.com/fxml">
+<BorderPane fx:controller="gs_gohel_final.Controller" xmlns:fx="http://javafx.com/fxml">
     <!-- See https://apps.carleton.edu/creativeservices/identity/college_colors/ for official Carleton colors -->
     <top>
         <BorderPane prefHeight="35" style="-fx-background-color: #6a91d1; -fx-padding: 10px, 5px, 10px, 5px" >
