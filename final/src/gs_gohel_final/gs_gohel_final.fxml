@@ -1,9 +1,9 @@
-<?import javafx.scene.layout.AnchorPane?><?import gs_gohel_final.View?>
+<?import javafx.scene.layout.AnchorPane?><?import edu.carleton.ganjam.View?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<BorderPane fx:controller="gs_gohel_final.Controller" xmlns:fx="http://javafx.com/fxml">
+<BorderPane fx:controller="edu.carleton.ganjam.Controller" xmlns:fx="http://javafx.com/fxml">
     <!-- See https://apps.carleton.edu/creativeservices/identity/college_colors/ for official Carleton colors -->
     <top>
         <BorderPane prefHeight="35" style="-fx-background-color: #6a91d1; -fx-padding: 10px, 5px, 10px, 5px" >
@@ -22,7 +22,7 @@
     <bottom>
         <HBox prefHeight="35" style="-fx-padding: 10px, 5px, 10px, 5px; -fx-background-color: #6a91d1">
             <Label style="-fx-font-size: 110%; -fx-text-fill: white"
-                   text="        Single pendulum: 1   /   Double Pendulum: 2   /   Reset system: R   /   Pause: P" />
+                   text="PRESS ---- Single pendulum: '1' | Double Pendulum: '2' | Pause: 'P' (press 'R' to reset)" />
         </HBox>
     </bottom>
 </BorderPane>
