@@ -20,30 +20,32 @@ import javafx.util.Duration;
 
 public class Controller implements EventHandler<KeyEvent> {
 
-    //@FXML private Label timeLabel;
-    @FXML private View view;
-    private Model model;
     private final int FRAMES_PER_SECOND = 20;
     EventHandler<ActionEvent> updater;
     Timeline timeline;
-
     //Switch to show if timeline is running or not
     boolean running;
+    //@FXML private Label timeLabel;
+    @FXML
+    private View view;
+    private Model model;
+
     /*
      * @constructor - Initializes model and running.
      */
     public Controller() {
         //timeLabel=null;
         model = new Model();
-        running=false;
+        running = false;
     }
+
     /* Starts the timer for the view Pane
         System runs indefinitely unless user overrides.
      */
     private void startTimer(int nodes) {
 
         updater = event -> update(nodes);
-        timeline = new Timeline(new KeyFrame(Duration.seconds(1.0/FRAMES_PER_SECOND), updater));
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1.0 / FRAMES_PER_SECOND), updater));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.playFromStart();
         running = true;
@@ -56,13 +58,6 @@ public class Controller implements EventHandler<KeyEvent> {
     public void update(int nodes) {
         model.updateSim(nodes);
         this.view.update(this.model);
-
-        //Display total time of simulation
-        //this.timeLabel = new Label(String.valueOf(this.Model.time));
-        //if(this.Model.getviewtype())
-        //  this.messageLabel = new Label("Simulation of the pendulum in space");
-        // else
-        // this.messageLabel = new Label("Kinetic Energy of Pendulum");
     }
 
     /*
@@ -82,15 +77,14 @@ public class Controller implements EventHandler<KeyEvent> {
 
         if (code == KeyCode.DIGIT1) {
             if (timeline != null)
-            timeline.stop();
+                timeline.stop();
             this.startTimer(1);
             this.model.startNewSimulation(1);
             this.view.keyPress(1);
             this.update(1);
         } else if (code == KeyCode.DIGIT2) {
             if (timeline != null)
-            timeline.stop();
-
+                timeline.stop();
             this.startTimer(2);
             this.model.startNewSimulation(2);
             this.view.keyPress(2);
@@ -98,8 +92,7 @@ public class Controller implements EventHandler<KeyEvent> {
         } else if (code == KeyCode.P) {
             if (timeline != null) {
                 timeline.pause();
-            }
-            else {
+            } else {
                 this.startTimer(1);
                 this.model.startNewSimulation(1);
                 this.view.keyPress(1);
@@ -114,24 +107,19 @@ public class Controller implements EventHandler<KeyEvent> {
             this.update(model.nodes);
 
         } else if (code == KeyCode.C) {
-            if(model.getPendulumColor().equals("black")) {
+
+            if (model.getPendulumColor().equals("black")) {
                 model.setPendulumColor("white");
-            }
-            else if(model.getPendulumColor().equals("white"))
+            } else if (model.getPendulumColor().equals("white"))
                 model.setPendulumColor("gold");
             else
                 model.setPendulumColor("black");
-            if(timeline!=null) {
+            if (timeline != null) {
                 timeline.stop();
             }
-           // view=new View();
+
             this.startTimer(model.nodes);
             this.model.startNewSimulation(model.nodes);
-
-
-            //this.startTimer(model.nodes);
-            //this.model.startNewSimulation(model.nodes);
-
             this.view.keyPress(model.nodes);
             this.update(model.nodes);
         } else {

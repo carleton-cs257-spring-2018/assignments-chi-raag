@@ -8,24 +8,18 @@
 
 package gs_gohel_final;
 
-import java.awt.*;
 import java.lang.Math;
 
 public class Model {
 
-    private boolean viewtype;
-    private int totaltime;
-    //private int pendulumLength;
+    public double time;
+    public int nodes;
     private String nodeColor;
-    private Color backgroundColor;
     private double xCoordinate, xCoordinate2;
     private double yCoordinate, yCoordinate2;
-    //private double damping;
     private double theta, theta2;
     private double gravityAcceleration;
     private double dt;
-    public double time;
-    public int nodes;
     private double KE_sys;
 
     private int m1, m2;
@@ -46,34 +40,17 @@ public class Model {
      */
     public Model() {
         //default values
-        viewtype = true;
         l1 = 5;
         l2 = 5;
-        m1=1;
-        m2=1;
-        backgroundColor = Color.CYAN;
+        m1 = 1;
+        m2 = 1;
         theta = Math.toRadians(90);
         gravityAcceleration = 9.81;
         dt = 0.1;
-        time=0;
-        nodes=1;
-        KE_sys=0;
-        nodeColor="gold";
-    }
-
-    /*  Get method for viewtype
-        @returns viewtype: Boolean that determines type of view
-     */
-    public boolean getviewtype() {
-        return viewtype;
-    }
-
-    /*  Set method for viewtyp
-        @param viewtype: Boolean that determines type of view
-     */
-    public boolean setviewtype(boolean viewtype) {
-        this.viewtype = viewtype;
-        return viewtype;
+        time = 0;
+        nodes = 1;
+        KE_sys = 0;
+        nodeColor = "gold";
     }
 
     /*  Initializes a simulation with appropriate math needed
@@ -81,14 +58,14 @@ public class Model {
      *   @param nodes: number of nodes in pendulum
      */
     public void startNewSimulation(int nodes) {
-        this.nodes=nodes;
+        this.nodes = nodes;
         this.theta = Math.toRadians(90);
         this.time = 0;
         this.angaccel = -gravityAcceleration / this.l1;
         this.angVelocity = 0;
         this.xCoordinate = l1;
         this.yCoordinate = 0;
-        this.KE_sys=0;
+        this.KE_sys = 0;
 
         if (nodes == 2) {
             theta2 = Math.toRadians(90);
@@ -97,13 +74,6 @@ public class Model {
             this.xCoordinate2 = l1 + l2;
             this.yCoordinate2 = 0;
         }
-    }
-
-    /*  Initializes a graphical with appropriate math needed
-     *   to visualize evolution of kinetic energy of an n-tuple pendulum
-     */
-    public void createGraph(int nodes) {
-        this.time = 0;
     }
 
     /*  Defines the set of values that define the system at each time step based on the number of nodes in pendulum
@@ -115,52 +85,28 @@ public class Model {
             angaccel = -gravityAcceleration / this.l1 * Math.sin(theta);
             angVelocity += angaccel * dt;
             theta += angVelocity * dt;
-            m2 = l2  = 0;
+            m2 = l2 = 0;
 
         } else if (nodes == 2) {
-            angaccel = (-gravityAcceleration * (2 * m1 + m2) * Math.sin(theta) - m2 * gravityAcceleration * Math.sin(theta - 2 * theta2) - 2 * Math.sin(theta - theta2) * m2 * (l2 * angVelocity2 * angVelocity2 + l1 * Math.cos(theta - theta2) * angVelocity * angVelocity)) / (l1 * (2 * m1 + m2 - m2 * Math.cos(2 * theta - 2 * theta2)));
-           /* System.out.print("Denom: ");
-            System.out.println((l1 * (2 * m1 + m2 - m2 * Math.cos(2 * theta - 2 * theta2))));
-            System.out.print("Num: ");
-            System.out.println((-gravityAcceleration * (2 * m1 + m2) * Math.sin(theta) - m2 * gravityAcceleration * Math.sin(theta - 2 * theta2) - 2 * Math.sin(theta - theta2) * m2 * (l2 * angVelocity2 * angVelocity + l1 * Math.cos(theta - theta2) * angVelocity * angVelocity)));
-            */
-
+            angaccel = (-gravityAcceleration * (2 * m1 + m2) * Math.sin(theta) - m2 * gravityAcceleration * Math.sin(theta - 2 * theta2)
+                    - 2 * Math.sin(theta - theta2) * m2 * (l2 * angVelocity2 * angVelocity2 + l1 * Math.cos(theta - theta2) * angVelocity * angVelocity))
+                    / (l1 * (2 * m1 + m2 - m2 * Math.cos(2 * theta - 2 * theta2)));
             angVelocity += angaccel * dt;
             theta += angVelocity * dt;
-            /*
-            System.out.print(angaccel+" ");
-            System.out.print(angVelocity+" ");
-            System.out.print(theta+" ");
-            System.out.println();
-            */
-
-            angaccel2 = (2 * Math.sin(theta - theta2) * ((m1 + m2) * l1 * angVelocity * angVelocity + gravityAcceleration * (m1 + m2) * Math.cos(theta) + l2 * m2 * Math.cos(theta - theta2) * angVelocity2 * angVelocity2)) / (l2 * (2 * m1 + m2 - m2 * Math.cos(2 * theta - 2 * theta2)));
+            angaccel2 = (2 * Math.sin(theta - theta2) * ((m1 + m2) * l1 * angVelocity * angVelocity + gravityAcceleration * (m1 + m2) * Math.cos(theta)
+                    + l2 * m2 * Math.cos(theta - theta2) * angVelocity2 * angVelocity2)) / (l2 * (2 * m1 + m2 - m2 * Math.cos(2 * theta - 2 * theta2)));
             angVelocity2 += angaccel2 * dt;
             theta2 += angVelocity2 * dt;
         }
-        xCoordinate=l1*Math.sin(theta);
-        yCoordinate=l1*Math.cos(theta);
-        if (nodes==2) {
-            xCoordinate2=xCoordinate+l2*Math.sin(theta2);
-            yCoordinate2=yCoordinate+l2*Math.cos(theta2);
+
+        xCoordinate = l1 * Math.sin(theta);
+        yCoordinate = l1 * Math.cos(theta);
+
+        if (nodes == 2) {
+            xCoordinate2 = xCoordinate + l2 * Math.sin(theta2);
+            yCoordinate2 = yCoordinate + l2 * Math.cos(theta2);
         }
     }
-
-    /******************* INCOMPLETE - FILLER CODE *******************/
-//        else if(nodes == 3) {
-//            double angaccel2, angvelocity2 = 0, angle2;
-//            double angaccel3, angvelocity3 = 0, angle3;
-//                angaccel = gravityAcceleration / this.pendulumLength * Math.sin(angle);
-//                angvelocity += angaccel * dt;
-//                angle += angvelocity * dt;
-//
-//                angaccel2 = gravityAcceleration / this.pendulumLength * Math.sin(angle);
-//                angvelocity2 += angaccel * dt;
-//                angle2 += angvelocity * dt;
-//        }
-//        this.time += dt;
-//
-//    }
 
     /*  Defines the KE equations to be used based in the number of nodes in pendulum
      *   @param nodes: number of nodes in pendulum
@@ -179,48 +125,30 @@ public class Model {
         this.time += this.dt;
     }
 
-
-    //public void setPendulumLength(int pendulumLength) {
-      //  this.pendulumLength = pendulumLength;
-    //}
-
-    //public int getPendulumLength() {
-      //  return this.pendulumLength;
-    //}
-
+    public String getPendulumColor() {
+        return this.nodeColor;
+    }
 
     public void setPendulumColor(String color) {
         this.nodeColor = color;
     }
 
-    public String getPendulumColor() {
-        return this.nodeColor;
-    }
-
-    public void setBackgroundColor(Color color) {
-        this.backgroundColor = color;
-    }
-
-    public Color getBackgroundColor() {
-        return backgroundColor;
-    }
-
-    public double getTheta() {
-        return this.theta;
-    }
-
     public double getxCoordinate() {
         return this.xCoordinate;
     }
+
     public double getyCoordinate() {
         return this.yCoordinate;
     }
+
     public double getxCoordinate2() {
         return this.xCoordinate2;
     }
+
     public double getyCoordinate2() {
         return this.yCoordinate2;
     }
+
     public int getNodes() {
         return this.nodes;
     }

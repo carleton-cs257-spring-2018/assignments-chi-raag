@@ -3,14 +3,10 @@
  * Authors: Chiraag Gohel and Sharan Ganjam Seshachallam
  * CS 257, Spring 2018
  * View.java - a part of the Pendulum MVC project.
-
-<<<<<<< HEAD
  */
 
 package gs_gohel_final;
 
-=======
->>>>>>> 369fbe25029cb0f628613d95126e58a040569c14
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
@@ -19,6 +15,8 @@ import javafx.scene.shape.Line;
 
 public class View extends Pane {
 
+    private final int Y_BUFFER = 200;
+    private final int X_BUFFER = -30;
     Circle pivotPoint;
     @FXML
     Circle secondNode;
@@ -30,8 +28,6 @@ public class View extends Pane {
     double firstNodeYCoordinate;
     double secondNodeXCoordinate;
     double secondNodeYCoordinate;
-
-    private final int Y_BUFFER = 200;
 
 
     /* A set constructor for the size and setup of the pendulum system.
@@ -95,10 +91,6 @@ public class View extends Pane {
             } else {
                 int i = getChildren().size();
                 getChildren().remove(0, i);
-//                firstNode.setCenterX(this.getMaxWidth() / 2);
-//                firstNode.setCenterY(this.getMaxHeight() / 2);
-//                secondNode.setCenterX(firstNode.getCenterX());
-//                secondNode.setCenterY(firstNode.getCenterY());
                 getChildren().addAll(firstLine, secondLine, firstNode, pivotPoint, secondNode);
             }
         }
@@ -110,10 +102,10 @@ public class View extends Pane {
     public void update(Model model) {
         firstNode.setFill(javafx.scene.paint.Paint.valueOf(model.getPendulumColor()));
 
-        firstNodeXCoordinate = -30+model.getxCoordinate() * this.getScene().getWidth() * .03 + this.getScene().getWidth() * 0.5;
+        firstNodeXCoordinate = X_BUFFER + model.getxCoordinate() * this.getScene().getWidth() * .03 + this.getScene().getWidth() * 0.5;
         firstNodeYCoordinate = Y_BUFFER + model.getyCoordinate() * this.getScene().getHeight() * .03;
 
-        secondNodeXCoordinate = -30+model.getxCoordinate2() * this.getScene().getWidth() * .03 + this.getScene().getWidth() * 0.5;
+        secondNodeXCoordinate = X_BUFFER + model.getxCoordinate2() * this.getScene().getWidth() * .03 + this.getScene().getWidth() * 0.5;
         secondNodeYCoordinate = Y_BUFFER + model.getyCoordinate2() * this.getScene().getHeight() * .03;
 
         moveCircle(model.getNodes());

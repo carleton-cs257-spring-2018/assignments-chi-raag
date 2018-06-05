@@ -1,16 +1,21 @@
-<?import javafx.scene.layout.AnchorPane?><?import gs_gohel_final.View?>
+<!--
+
+ * Pendulum JAVAFX project
+ * Authors: Chiraag Gohel and Sharan Ganjam Seshachallam
+ * CS 257, Spring 2018
+ * gs_gohel_final.fxml - a part of the Pendulum MVC project.
+
+-->
+
+<?import gs_gohel_final.View?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
 <BorderPane fx:controller="gs_gohel_final.Controller" xmlns:fx="http://javafx.com/fxml">
-    <!-- See https://apps.carleton.edu/creativeservices/identity/college_colors/ for official Carleton colors -->
     <top>
         <BorderPane prefHeight="35" style="-fx-background-color: #6a91d1; -fx-padding: 10px, 5px, 10px, 5px" >
-            <center><Label style="-fx-font-size: 180%; -fx-text-fill: black"
+            <center><Label style="-fx-font-size: 200%; -fx-text-fill: black"
                            text= "Pendulum Simulator"  /></center>
-            <!--<left><Label fx:id="timeLabel" style="-fx-font-size: 150%; -fx-text-fill: white" /></left>
-            <right><Label fx:id="messageLabel" style="-fx-font-size: 150%; -fx-text-fill: white"/></right> -->
         </BorderPane>
     </top>
     <left><HBox prefHeight="35" style="-fx-padding: 10px, 10px, 10px, 10px; -fx-background-color: #6a91d1"></HBox></left>
@@ -20,9 +25,9 @@
         <View fx:id="view"/>
     </center>
     <bottom>
-        <HBox prefHeight="35" style="-fx-padding: 10px, 5px, 10px, 5px; -fx-background-color: #6a91d1">
-            <Label style="-fx-font-size: 110%; -fx-text-fill: white"
-                   text="        Single pendulum: 1   /   Double Pendulum: 2   /   Reset system: R   /   Pause: P" />
+        <HBox prefHeight="75" style="-fx-padding: 10px, 10px, 10px, 10px; -fx-background-color: #6a91d1">
+            <Label style="-fx-font-size: 160%; -fx-text-fill: white"
+                   text="  PRESS ---- Single pendulum: '1' | Double Pendulum: '2' | &#xD;         Pause: 'P' (press 'R' to reset) | Cycle colors: 'C'" />
         </HBox>
     </bottom>
 </BorderPane>

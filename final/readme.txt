@@ -21,6 +21,7 @@ The single pendulum works very well.
 And for both systems, the resets and the pause function perform well too.
 
 We have issues with the double pendulum simulation. It starts off much faster than usual, and then the simulation breaks after ~3 seconds. We think this is an approximation error in our differential equations (model).
+
 Following this, transitioning to the double pendulum from the single crashes the applet. However, the reverse is not true. The single pendulum runs without hiccups.
 
-We were unable to implement changing colors for the pendulum.
+Press C to change colors!
