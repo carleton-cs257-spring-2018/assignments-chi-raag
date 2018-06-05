@@ -204,10 +204,6 @@ public class Model {
         return backgroundColor;
     }
 
-    //public void setDamping(int damping) {
-      //  this.damping = damping;
-    //}
-
     public double getTheta() {
         return this.theta;
     }
@@ -223,6 +219,9 @@ public class Model {
     }
     public double getyCoordinate2() {
         return this.yCoordinate2;
+    }
+    public int getNodes() {
+        return this.nodes;
     }
 }
 

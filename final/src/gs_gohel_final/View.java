@@ -1,36 +1,26 @@
 package gs_gohel_final;
 
-
-import com.sun.istack.internal.NotNull;
 import javafx.fxml.FXML;
-
-import javafx.scene.Group;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
-import java.awt.*;
-
 public class View extends Pane {
 
-    //The number of nodes that defines the size of the pendulum system
-    private int N;
-    private boolean viewtype;
-    private int totaltime;
-    private int pendulumLength;
-    private int nodeRadius;
-    private Color[] nodeColors;
-    private Color backgroundColor;
-    private double theta;
-    @FXML Circle circle1;
-    Circle circle2;
-    Circle circle3;
-    Line line;
-    Line line2;
-    double x;
-    double y;
-    double x2;
-    double y2;
+    Circle pivotPoint;
+    @FXML
+    Circle secondNode;
+    @FXML
+    Circle firstNode;
+    Line firstLine;
+    Line secondLine;
+    double firstNodeXCoordinate;
+    double firstNodeYCoordinate;
+    double secondNodeXCoordinate;
+    double secondNodeYCoordinate;
+
+    private final int Y_BUFFER = 200;
 
 
     /* A set constructor for the size and setup of the pendulum system.
@@ -43,62 +33,62 @@ public class View extends Pane {
      * @constructor
      */
     public View() {
+        
         Model model = new Model();
-        System.out.println(model.getPendulumColor());
 
-        circle1 = new Circle(this.getMaxWidth()/2, this.getMaxHeight()/2, 14, javafx.scene.paint.Paint.valueOf(model.getPendulumColor()));
+        firstNode = new Circle(this.getMaxWidth() / 2, this.getMaxHeight() / 2, 14, Paint.valueOf(model.getPendulumColor()));
+        pivotPoint = new Circle(300, 200 + model.getyCoordinate(), 5, Paint.valueOf(model.getPendulumColor()));
+        secondNode = new Circle(firstNode.getCenterX(), firstNode.getCenterY(), 14, Paint.valueOf(model.getPendulumColor()));
 
+        firstLine = new Line(firstNode.getCenterX(), firstNode.getCenterY(), 300, pivotPoint.getCenterY());
+        firstLine.setStrokeWidth(3);
+        firstLine.startXProperty().bind(firstNode.centerXProperty().add(firstNode.translateXProperty()));
+        firstLine.startYProperty().bind(firstNode.centerYProperty().add(firstNode.translateYProperty()));
 
-        // Create another circle
-        circle2 = new Circle(300, 200+model.getyCoordinate(), 5, javafx.scene.paint.Paint.valueOf(model.getPendulumColor()));
-        //circle3 = new Circle(this.getMaxWidth()/1.5, this.getMaxHeight()/1.5, 14);
-        circle3 = new Circle(circle1.getCenterX(), circle1.getCenterY(),14, javafx.scene.paint.Paint.valueOf(model.getPendulumColor()));
-
-        line = new Line(circle1.getCenterX(), circle1.getCenterY(), 300, circle2.getCenterY());
-        line.setStrokeWidth(3);
-        // Binding the line and the circle1 together, so they move synchronized
-        line.startXProperty().bind(circle1.centerXProperty().add(circle1.translateXProperty()));
-        line.startYProperty().bind(circle1.centerYProperty().add(circle1.translateYProperty()));
-        line2 = new Line(circle3.getCenterX(), circle3.getCenterY(), circle1.getCenterX(), circle1.getCenterY());
-        line2.startXProperty().bind(circle3.centerXProperty().add(circle3.translateXProperty()));
-        line2.startYProperty().bind(circle3.centerYProperty().add(circle3.translateYProperty()));
-        line2.endXProperty().bind(circle1.centerXProperty().add(circle1.translateXProperty()));
-        line2.endYProperty().bind(circle1.centerYProperty().add(circle1.translateYProperty()));
+        secondLine = new Line(secondNode.getCenterX(), secondNode.getCenterY(), firstNode.getCenterX(), firstNode.getCenterY());
+        secondLine.startXProperty().bind(secondNode.centerXProperty().add(secondNode.translateXProperty()));
+        secondLine.startYProperty().bind(secondNode.centerYProperty().add(secondNode.translateYProperty()));
+        secondLine.endXProperty().bind(firstNode.centerXProperty().add(firstNode.translateXProperty()));
+        secondLine.endYProperty().bind(firstNode.centerYProperty().add(firstNode.translateYProperty()));
     }
 
     /* A method that updates the positions of the pendulum nodes. */
-    public void moveCircle() {
-        circle1.setTranslateX(x);
-        circle1.setTranslateY(y);
-        circle3.setTranslateY(y2);
-        circle3.setTranslateX(x2);
+    public void moveCircle(int nodes) {
+        if (nodes == 1) {
+            firstNode.setTranslateX(firstNodeXCoordinate);
+            firstNode.setTranslateY(firstNodeYCoordinate);
+        } else if (nodes == 2) {
+            firstNode.setTranslateX(firstNodeXCoordinate);
+            firstNode.setTranslateY(firstNodeYCoordinate);
+            secondNode.setTranslateY(secondNodeYCoordinate);
+            secondNode.setTranslateX(secondNodeYCoordinate);
+        }
     }
+
     /* A method that resets the pane at use input
         @param nodes: The number of nodes in the pendulum
         Removes previously inputted children in the pane and allows a reset of the system.
      */
     public void keyPress(int nodes) {
         if (nodes == 1) {
-            if (!getChildren().contains(circle2)) {
-                getChildren().addAll(line, circle1, circle2);
+            if (!getChildren().contains(pivotPoint)) {
+                getChildren().addAll(firstLine, firstNode, pivotPoint);
             } else {
-                System.out.println(getChildren().toString());
                 int i = getChildren().size();
                 getChildren().remove(0, i);
-                getChildren().addAll(line, circle1, circle2);
+                getChildren().addAll(firstLine, firstNode, pivotPoint);
             }
-        }
-        else if (nodes == 2) {
-            if (!getChildren().contains(circle2)) {
-                getChildren().addAll(line, line2, circle1, circle2, circle3);
+        } else if (nodes == 2) {
+            if (!getChildren().contains(pivotPoint)) {
+                getChildren().addAll(secondLine, firstLine, secondNode, firstNode, pivotPoint);
             } else {
                 int i = getChildren().size();
                 getChildren().remove(0, i);
-                circle1.setCenterX(this.getMaxWidth()/2);
-                circle1.setCenterY(this.getMaxHeight()/2);
-                circle3.setCenterX(circle1.getCenterX());
-                circle3.setCenterY(circle1.getCenterY());
-                getChildren().addAll(line, line2, circle1, circle2, circle3);
+//                firstNode.setCenterX(this.getMaxWidth() / 2);
+//                firstNode.setCenterY(this.getMaxHeight() / 2);
+//                secondNode.setCenterX(firstNode.getCenterX());
+//                secondNode.setCenterY(firstNode.getCenterY());
+                getChildren().addAll(firstLine, secondLine, firstNode, pivotPoint, secondNode);
             }
         }
     }
@@ -107,15 +97,15 @@ public class View extends Pane {
         @param model: the pendulum object
      */
     public void update(Model model) {
-        //System.out.println(model.getxCoordinate2());
-        x = model.getxCoordinate() * this.getScene().getWidth() * .03 + this.getScene().getWidth()*0.5;
-        y = 200+ model.getyCoordinate() * this.getScene().getHeight() * .03;
-        x2 = model.getxCoordinate2() * this.getScene().getWidth() * .03 + this.getScene().getWidth()*0.5;
-        y2 = 200+ model.getyCoordinate2() * this.getScene().getHeight() * .03;
-        //System.out.println(x2);
-        //System.out.println(y2);
+        firstNode.setFill(javafx.scene.paint.Paint.valueOf(model.getPendulumColor()));
 
-        moveCircle();
+        firstNodeXCoordinate = model.getxCoordinate() * this.getScene().getWidth() * .03 + this.getScene().getWidth() * 0.5;
+        firstNodeYCoordinate = Y_BUFFER + model.getyCoordinate() * this.getScene().getHeight() * .03;
+
+        secondNodeXCoordinate = model.getxCoordinate2() * this.getScene().getWidth() * .03 + this.getScene().getWidth() * 0.5;
+        secondNodeYCoordinate = Y_BUFFER + model.getyCoordinate2() * this.getScene().getHeight() * .03;
+
+        moveCircle(model.getNodes());
     }
 
 }
